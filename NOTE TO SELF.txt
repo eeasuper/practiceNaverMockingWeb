@@ -1,0 +1,5 @@
+get around to add Bcrypt authentication in backend, currently it is using default generated security password. (I don't know if the default is Bcrypt or not either)
+
+Add Hateoas to Backend. For now it's just regular JSON.
+Go to this link:
+https://spring.io/guides/tutorials/rest/

@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import {Switch, Route, withRouter, Redirect} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
+import {Provider} from "react-redux";
+import {setAuthorizationToken,setCurrentUser } from "./store/actions/auth";
+import jwtDecode from "jwt-decode";
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+import Main from './containers/Main'
+import {configureStore} from "./store";
+
+const store = configureStore();
+
+if(localStorage.jwtToken){
+  setAuthorizationToken(localStorage.jwtToken);
+  //prevent someone from manually tampering with the key of jwtToken in localStorage
+  try{
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+  } catch(e){ 
+    store.dispatch(setCurrentUser({}))
   }
-}
+}//this is hydration. If the server were to go down, or such, when the page refreshes we can still se a token in localStorage. If so, we can repopulate our state with the current user.
+
+
+const App = props => (
+  <Provider store={store}>
+    <Router>
+      <div id="wrap">
+        <Main />
+      </div>
+    </Router>
+  </Provider>
+);
 
 export default App;

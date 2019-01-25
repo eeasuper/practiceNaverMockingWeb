@@ -1,0 +1,60 @@
+#homepage_container{
+    margin: 0 auto;
+  padding: 8px 10px 0;
+  width: 1080px;
+  text-align: left;
+}
+
+#column_right{
+  position: relative;
+  float: right;
+  width: 332px;
+}
+
+#account{
+  position: relative;
+  height: 118px;
+  border: 1px solid #dee3eb;
+  background: #fff;
+}
+
+#login_con{
+  padding: 15px 25px;
+}
+
+#login_intro{
+  color: #888;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+#login_button{
+  display: block;
+  margin-top: 12px;
+}
+
+#login_links{
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  overflow: hidden;
+  width: 280px;
+  height: 38px; 
+}
+
+#login_links_find{
+  color: #666;
+  display: block;
+  font-size: 12px;
+  line-height: 38px;
+}
+
+.login_find_text{
+  color: #666;
+}
+
+#login_link_register{
+  float: right;
+  color: #666;
+  
+}
