@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import com.nano.naver_m.services.SignUpService;
 import com.nano.naver_m.services.TokenAuthenticationService;
 
 @RestController
+//@CrossOrigin
 public class UserController {
 	private final UserRepository repository;
 	private final UserResourceAssembler assembler;
@@ -49,9 +51,11 @@ public class UserController {
 		return repository.findAll();
 	}
 	
+//	@CrossOrigin(origins = "http://localhost:3000")
+//	@CrossOrigin
 	@PostMapping("/register")
 	ResponseEntity<?> newUser(@RequestBody User newUser, HttpServletResponse res) throws URISyntaxException {
-		
+
 		User user = signupService.signup(res, newUser);
 		String JWTtoken = TokenAuthenticationService.addAuthentication(res, user.getUsername());
 		UserResource userResource = new UserResource(JWTtoken,user,user.getId()); 

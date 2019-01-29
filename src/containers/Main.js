@@ -12,7 +12,12 @@ const Main = props => {
     <div>
       <Route exact path="/" component={Homepage}/>
       <Route exact path="/signin" component={LoginForm}/>
-      <Route exact path="/signup" component={RegisterForm}/>
+      <Route exact path="/signup" render ={props=>{
+          return(
+            <RegisterForm onAuth={authUser}/>
+          )
+        }
+      }/>
     </div>
   )
 };

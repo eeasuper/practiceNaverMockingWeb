@@ -3,10 +3,12 @@
   src: url('./fonts/UnDotum.ttf');
 }
 body,p,button{
-  font-family: UnDotum, Helvetica, sans-serif;
+  font-family: UnDotum, Arial, Helvetica, sans-serif;
   font-size: 12px;
   margin: 0;
   padding: 0;
+  border: 0;
+  border-radius: 0;
 }
 
 *{

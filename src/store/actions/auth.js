@@ -22,10 +22,11 @@ export function logout(){
 }
 
 export function authUser(type, userData){
-  return dispatch => {
+  return (dispatch) => {
+    console.log("FDD")
     return new Promise((resolve, reject)=>{
       //-----NOTE: localhost:8080 might be wrong 
-      return apiCall("post", `localhost:8080/api/auth/${type}`, userData)
+      return apiCall("post", `localhost:8080/${type}`, userData)
       .then(({token, ...user}) => {
         localStorage.setItem("jwtToken", token);
         setAuthorizationToken(token);
@@ -35,6 +36,7 @@ export function authUser(type, userData){
       })
       .catch(err=>{
         // dispatch(addError(err.message));
+        console.log("error")
         reject();
       })
     })

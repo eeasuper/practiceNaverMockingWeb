@@ -22,7 +22,7 @@ if(localStorage.jwtToken){
 }//this is hydration. If the server were to go down, or such, when the page refreshes we can still se a token in localStorage. If so, we can repopulate our state with the current user.
 
 
-const App = props => (
+const App = () => (
   <Provider store={store}>
     <Router>
       <div id="wrap">
