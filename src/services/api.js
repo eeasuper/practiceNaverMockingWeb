@@ -21,7 +21,7 @@ export function apiCall(method, path, data){
   return new Promise((resolve, reject)=>{
     console.log("attempting");
     // return axios[method.toLowerCase()](path, data).then(res=> {
-    if(path === "test"){
+    if(path.includes("test"){
       console.log("attempting GET");
       return axios.get("https://greeting-backend-temporary.herokuapp.com/greeting-javaconfig").then(res=>{
         console.log("GET succeeded");
