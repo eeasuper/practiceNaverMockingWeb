@@ -146,12 +146,12 @@ class RegisterForm extends Component{
                     {this.state.dirty.email && !this.state.valid.email && <span id="" className="error_box">필수 정보입니다.</span>}
                   </div>
                 </div>
-                <div id="btn_area">
+                <div class="btn_area">
                   <button id="register_button" className="btn_type btn_primary" type="submit"><span>Sign Up</span></button>
                 </div>
               </div>
-              <div style="display: block; position: relative">
-                <button onClick={this.testClick()}>CLICK TO TEST GET</button>
+              <div class="btn_area">
+                <button id="testtt" className="btn_type btn_primary" onClick={this.testClick}>CLICK TO TEST GET</button>
               </div>
             </div>
           </div>

@@ -117,7 +117,8 @@
   font-size: 12px;
 }
 
-#btn_area{
+/*change to id later.*/
+.btn_area{
   margin: 30px 0 9px;
 }
 
