@@ -22,6 +22,7 @@ export function apiCall(method, path, data){
     console.log("attempting");
     // return axios[method.toLowerCase()](path, data).then(res=> {
     if(path === "test"){
+      console.log("attempting GET");
       return axios.get("https://greeting-backend-temporary.herokuapp.com/greeting-posttest").then(res=>{
         console.log("GET succeeded");
         console.log(res);
@@ -30,7 +31,8 @@ export function apiCall(method, path, data){
         return reject(err.response);
       })
     }else{
-    return axios.post("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{content: "POSTING!"}, config).then(res=> {
+      console.log("attempting POST");
+    return axios.post("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{content: "POSTING!"}).then(res=> {
       // return fetch("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{
       //   method:"POST",
       //   mode: "cors",
