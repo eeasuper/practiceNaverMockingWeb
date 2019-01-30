@@ -82,7 +82,7 @@ class RegisterForm extends Component{
     })
   }
 
-  testclick(e){
+  testClick(e){
     this.props.onAuth("test", {})().then(()=>{
       this.props.history.push("/");
     }).catch(()=>{
