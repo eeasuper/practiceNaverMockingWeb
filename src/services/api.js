@@ -10,7 +10,7 @@ export function setTokenHeader(token){
 
 const config={
   headers: {
-   'Origin': 'https://greeting-backend-temporary.herokuapp.com',
+   'Origin': 'https://naver-mock-app.herokuapp.com',
    // 'X-Requested-With': 'http://localhost:3000',
    'Access-Control-Request-Method' : 'POST, OPTIONS',
    'Access-Control-Request-Headers': 'access-control-allow-origin'
@@ -21,7 +21,16 @@ export function apiCall(method, path, data){
   return new Promise((resolve, reject)=>{
     console.log("attempting");
     // return axios[method.toLowerCase()](path, data).then(res=> {
-    return axios.post("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{content: "POSTING!"}).then(res=> {
+    if(path === "test"){
+      return axios.get("https://greeting-backend-temporary.herokuapp.com/greeting-posttest").then(res=>{
+        console.log("GET succeeded");
+        console.log(res);
+        return resolve(res.data);
+      }).catch(err=>{
+        return reject(err.response);
+      })
+    }else{
+    return axios.post("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{content: "POSTING!"}, config).then(res=> {
       // return fetch("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{
       //   method:"POST",
       //   mode: "cors",
@@ -37,5 +46,6 @@ export function apiCall(method, path, data){
       console.log(err);
       return reject(err.response);
     })
+   }
   })
 }

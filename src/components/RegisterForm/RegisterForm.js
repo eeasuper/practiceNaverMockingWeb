@@ -34,6 +34,7 @@ class RegisterForm extends Component{
     this.handleBlur = this.handleBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.testClick = this.testClick.bind(this);
   }
   componentDidUpdate(){
     // console.log(this.state);
@@ -74,6 +75,15 @@ class RegisterForm extends Component{
     }
     console.log(state);
     this.props.onAuth("register", state)().then(()=>{
+      this.props.history.push("/");
+    }).catch(()=>{
+      console.log("error");
+      return;
+    })
+  }
+
+  testclick(e){
+    this.props.onAuth("test", state)().then(()=>{
       this.props.history.push("/");
     }).catch(()=>{
       console.log("error");
@@ -139,6 +149,9 @@ class RegisterForm extends Component{
                 <div id="btn_area">
                   <button id="register_button" className="btn_type btn_primary" type="submit"><span>Sign Up</span></button>
                 </div>
+              </div>
+              <div style="display: block; position: relative">
+                <button onClick={this.testClick()}>CLICK TO TEST GET</button>
               </div>
             </div>
           </div>
