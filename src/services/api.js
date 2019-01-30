@@ -10,7 +10,7 @@ export function setTokenHeader(token){
 
 const config={
   headers: {
-   'Origin': 'http://localhost:3000',
+   'Origin': 'https://greeting-backend-temporary.herokuapp.com',
    // 'X-Requested-With': 'http://localhost:3000',
    'Access-Control-Request-Method' : 'POST, OPTIONS',
    'Access-Control-Request-Headers': 'access-control-allow-origin'
@@ -21,7 +21,13 @@ export function apiCall(method, path, data){
   return new Promise((resolve, reject)=>{
     console.log("attempting");
     // return axios[method.toLowerCase()](path, data).then(res=> {
-    return axios.get("http://localhost:8080/greeting-posttest",{content: "POSTING!"}, config).then(res=> {
+    return axios.post("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{content: "POSTING!"}).then(res=> {
+      // return fetch("https://greeting-backend-temporary.herokuapp.com/greeting-posttest",{
+      //   method:"POST",
+      //   mode: "cors",
+      //   credentials: "include",
+      //   body: {content:"POSTING!"},
+      // }).then(res=>{
       console.log("successful");
       console.log(res);
       return resolve(res.data) //in a successful request we always get back a subobject call data.
