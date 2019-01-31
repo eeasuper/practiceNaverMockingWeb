@@ -57,10 +57,13 @@
 
 .error_box{
   display: block;
-  margin: 9px 0 -2px;
+  margin: 9px 0 0px;
   font-size: 12px;
   line-height: 14px;
   color: red;
+}
+.green{
+  color: #08a600 !important;
 }
 
 #username_span{

@@ -125,7 +125,7 @@
   border-spacing: 0px;
   /*border-collapse: separate;*/
   /*grid-template-rows: 14.29% 14.29% 14.29% 14.29% 14.29% 14.29% 14.29% ;*/
-  width: 303px;
+  width: 310px;
 }
 
 .nav_main_li{
@@ -152,7 +152,7 @@
 #nav_second_ul{
   float: left;
   position: relative;
-  width: 366px;
+  width: 390px;
   padding-top: 4px;
   padding-left: 18px;
 }

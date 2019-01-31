@@ -7,7 +7,7 @@ class Homepage extends Component {
     return(
       <div>
         <Header/>
-        <RightColumn/>
+        <RightColumn currentUser={this.props.currentUser}/>
       </div>
     );
   }

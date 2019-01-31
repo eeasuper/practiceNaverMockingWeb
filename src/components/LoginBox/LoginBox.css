@@ -1,0 +1,120 @@
+#user_area{
+  height: 82px;
+}
+
+#user_info{
+  padding: 10px 16px 12px 14px;
+  border: 1px solid #dee3eb;
+  border-bottom: 0;
+}
+
+#user_thumbnail{
+  position: relative;
+  float: left;
+  width: 56px;
+  height: 56px;
+  padding: 2px;
+  margin-right: 8px;
+}
+
+#info_title{
+  overflow: hidden;
+padding: 12px 0 4px;
+}
+
+#info_username{
+  font-size: 14px;
+font-weight: 700;
+margin-right: 6px;
+vertical-align: top;
+}
+
+#info_username strong{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  max-width: 150px;
+  vertical-align: top;
+  padding-right: 3px;
+}
+
+#link_myinfo{
+  font-size: 12px;
+color: #888;
+text-decoration: underline;
+vertical-align: top;
+margin-right: 2px;
+}
+
+#info_lock{
+  background-image: url(https://ssl.pstatic.net/static/common/myarea/sp_png_icon_66ded248.png);
+  background-size: 251px 232px;
+  background-position: -226px -173px;
+  width: 10px;
+  height: 12px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#info_services{
+  overflow: hidden;
+line-height: 24px;
+padding-left: 1px;
+font-size: 0;
+}
+
+#btn_logout{
+  font-size: 12px;
+color: #444;
+float: right;
+border: 1px solid #e5e8ef;
+padding: 0 5px;
+height: 22px;
+line-height: 23px;
+text-decoration: none !important;
+}
+
+#btn_inr{
+  font-size: 12px;
+  color: #444;
+  line-height: 23px;
+}
+
+.link_cover{
+  display: inline-block;
+  vertical-align: top;
+}
+
+#link_mail{
+  min-width: 62px;
+}
+
+.link_cover span{
+  font-size: 13px;
+  color: #222;
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: none !important;
+}
+
+.link_cover span i{
+  font-style: normal;
+}
+
+.cnt{
+  font-weight: 700;
+color: #00ab33;
+padding-left: 1px;
+}
+
+#link_note{
+}
+
+#user_info:after{
+  clear: both;
+  overflow: hidden;
+  display: block;
+  height: 0;
+  content: '';
+}

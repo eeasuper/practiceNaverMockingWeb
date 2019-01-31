@@ -21,25 +21,31 @@ export function logout(){
   }
 }
 
-export function authUser(type, userData){
+export function authUser(type, userData){  
+    console.log("fff");
   return (dispatch) => {
-    console.log("FDD")
     return new Promise((resolve, reject)=>{
-      //-----NOTE: localhost:8080 might be wrong 
+      console.log("ff")
+      //-----NOTE: when almost done, change localhost:8080 to some other CLOUD backend. making front and back communicate in localhost doesn't work for some reason.
       return apiCall("post", `localhost:8080/${type}`, userData)
       .then(({token, ...user}) => {
+        console.log(user);
         localStorage.setItem("jwtToken", token);
         setAuthorizationToken(token);
         dispatch(setCurrentUser(user));
+        console.log("dispatch done");
         // dispatch(removeError()); 
         resolve();
       })
       .catch(err=>{
         // dispatch(addError(err.message));
-        console.log("error")
+        console.log("error in auth")
+        console.log(err);
         reject();
       })
     })
   }
+  // console.log("trying a")
+  // a();
 }
 //at .then destructuring is used. It unpacks files from objects passed as function parameter.

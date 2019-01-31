@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import {Switch, Route, withRouter, Redirect} from "react-router-dom";
-import {BrowserRouter as Router} from "react-router-dom";
+// import {BrowserRouter as Router} from "react-router-dom";
+import {Router} from 'react-router-dom';
 import {Provider} from "react-redux";
 import {setAuthorizationToken,setCurrentUser } from "./store/actions/auth";
 import jwtDecode from "jwt-decode";
 import './App.css'
+import history from './services/history';
 
 import Main from './containers/Main'
 import {configureStore} from "./store";
+
 
 const store = configureStore();
 
@@ -24,9 +27,9 @@ if(localStorage.jwtToken){
 
 const App = () => (
   <Provider store={store}>
-    <Router>
+    <Router history = {history}>
       <div id="wrap">
-        <Main />
+        <Main dispatch={store.dispatch}/>
       </div>
     </Router>
   </Provider>
