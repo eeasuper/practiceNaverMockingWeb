@@ -11,7 +11,7 @@ import RegisterForm from '../components/RegisterForm/RegisterForm';
       
 class Main extends Component {
   componentDidUpdate(){
-    console.log(Object.keys(this.props.currentUser).length);
+    // console.log(Object.keys(this.props.currentUser).length);
   }
   render(){
     return (

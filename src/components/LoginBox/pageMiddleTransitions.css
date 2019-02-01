@@ -1,0 +1,10 @@
+.defaultClassName{
+},
+.enterClassName{
+  border: 1px solid purple;
+  transform: translateX(-100%);
+  transition: all 1000ms linear;
+},
+.leaveClassName{
+  
+}

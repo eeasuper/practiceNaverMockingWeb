@@ -118,3 +118,140 @@ padding-left: 1px;
   height: 0;
   content: '';
 }
+
+#service_tab{
+  position: relative;
+margin-top: -7px;
+border-left: 1px solid #dee3eb;
+border-right: 1px solid #dee3eb;
+height: 38px;
+padding-top: 7px;
+}
+
+#slide_cover{
+  position: absolute;
+width: 100%;
+top: 0;
+white-space: nowrap;
+font-size: 0;
+padding-top: 7px;
+overflow: hidden;
+}
+
+#slide_cover ul{
+  position: relative;
+display: inline-block;
+vertical-align: top;
+}
+
+.ulCon{
+   position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.ulCon-inner{
+  position: absolute;
+    display: inline-block;
+  vertical-align: top;
+}
+
+#service_tab_list{
+  left: 0px;
+  transition: left 0.3s ease-in-out 0s;
+}
+
+#page_right{
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 313px;
+  padding-right: 17px;
+  padding-left: 0px;
+}
+
+.service_lis{
+    position: relative;
+  display: inline-block;
+  background-color: #fafafa;
+  vertical-align: top;
+  width: 52px;
+}
+
+.tab_noti{
+  font-size: 12px;
+  color: #444;
+  text-align: center;
+  display: block;
+  border-width: 1px 1px 0 0;
+  border-style: solid;
+  border-color: #ebeef3;
+  height: 18px;
+  line-height: 19px;
+  padding: 10px 0 8px;
+  text-decoration: none !important;
+}
+
+.tab_noti i{
+  font-style: normal;
+}
+
+.tab_post{
+
+}
+
+.page_middle{
+   position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 293px;
+  padding-left: 19px;
+  padding-right: 18px;
+}
+
+#page_left{
+    position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 19px;
+  padding-right: 0;
+  width: 313px;
+}
+
+.slide_btn{
+  display: block;
+height: 36px;
+background-color: #fafafa;
+text-align: right;
+z-index: 10;
+border: 1px solid #ebeef3;
+border-bottom-color: #dee3eb;
+border-width: 1px 0;
+}
+
+.btn_text{
+  position: absolute;
+right: 0;
+top: 8px;
+border-left: 1px solid #ebeef3;
+background-color: #fafafa;
+width: 18px;
+height: 36px;
+font-size: 0;
+line-height: 0;
+text-align: center;
+cursor: pointer;
+}
+
+.btn_text i{
+  background-image: url(https://ssl.pstatic.net/static/common/myarea/sp_png_icon_66ded248.png);
+background-size: 251px 232px;
+background-position: -245px 0;
+width: 6px;
+height: 10px;
+display: inline-block;
+overflow: hidden;
+margin: 12px -2px 0 0;
+font-size: inherit;
+line-height: inherit;
+}
+
