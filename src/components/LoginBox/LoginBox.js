@@ -1,129 +1,41 @@
 import React, { Component, Fragment} from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+
 // import { CSSTransition,TransitionGroup} from 'react-transition-group';
 import { CSSTransition,transit } from "react-css-transition";
 import ProfileIcon from './profile_icon.PNG';
 import './LoginBox.css'
-import classes from './csstransitions.css'
-import pageMiddleClasses from './pageMiddleTransitions.css'
+import {logout} from "../../store/actions/auth";
+import UserTabs from '../UserTabs/UserTabs';
+
 //CSS-transition doc
 //https://wikiwi.github.io/react-css-transition/
-CSSTransition.childContextTypes = {
-    // this can be empty
-}
+//Next Time, NEVER use CSS-transitions!
 
 class LoginBox extends Component{
   constructor(props){
     super(props);
-    this.pageRight = React.createRef();
-    this.pageMiddle = React.createRef();
-    this.pageLeft = React.createRef();
-    this.shiftServicePage = this.shiftServicePage.bind(this);
+
+    this.doLogout = this.doLogout.bind(this);
     this.state= {
-      currentServicePage: 0,
-      servicePages:{
-        pageRight: true,
-        pageMiddle: false,
-        pageLeft:false,
-        pageMiddle2: false
-      }
     }
-    this.servicePageKeys=Object.keys(this.state.servicePages);
-  }
 
-  shiftServicePage(e){
-    switch(this.state.currentServicePage){
-      case(0):
-        this.setState(prevState=>({
-          currentServicePage: 1,
-          servicePages:{
-            ...prevState.servicePages,
-            pageRight: false,
-            pageMiddle:true
-          }
-        }))
-        break;
-      case(1):
-        this.setState(prevState=>({
-          currentServicePage: 2,
-          servicePages:{
-            ...prevState.servicePages,
-            pageMiddle: false,
-            pageLeft:true
-          }
-        }))
-        break;
-      case(2):
-        this.setState(prevState=>({
-          currentServicePage: 3,
-          servicePages:{
-            ...prevState.servicePages,
-            pageLeft: false,
-            pageMiddle2:true
-          }
-        }))
-        break;
-      case(3):
-        this.setState(prevState=>({
-          currentServicePage: 0,
-          servicePages:{
-            ...prevState.servicePages,
-            pageMiddle2: false,
-            pageRight:true
-          }
-        }))
-        break;
-      default:
-        this.setState(prevState=>({
-          currentServicePage: 0,
-          servicePages:{
-            pageRight: true,
-            pageMiddle: false,
-            pageLeft: false,
-            pageMiddle2: false
-          }
-        }))
-    }
   }
 
 
-  componentDidUpdate(){
-    console.log(this.state);
+  doLogout(e){
+    this.props.doLogout();
+  }
+
+  componentDidUpdate(){  
 
   }
 
   render(){
-    const page_right_lis = ["알림", "MY구독", "메일","카페","블로그", "페이"].map((val,ind)=>{
-      return(
-        <li key={ind} className="service_lis">
-          <Link className="tab_noti" to="/">
-            <i>{val}</i>
-          </Link>
-        </li>
-      )
-    })
 
-    const page_middle_lis = ["포스트", "클라우드","오피스","캘린더", "해피빈"].map((val,ind)=>{
-      return(
-        <li key={ind} className="service_lis">
-          <Link className="tab_noti" to="/">
-            <i>{val}</i>
-          </Link>
-        </li>
-      )
-    })
-
-    const page_left_lis = ["지식iN","메모"].map((val,ind)=>{
-      return(
-        <li key={ind} className="service_lis">
-          <Link className="tab_noti" to="/">
-            <i>{val}</i>
-          </Link>
-        </li>
-      )
-    })
-
-    const {pageLeft,pageRight,pageMiddle,pageMiddle2,pageRight2} = this.state.servicePages;
+    let test = 0;
+    // const {pageLeft,pageRight,pageMiddle,pageMiddle2,pageRight2} = this.state.servicePages;
     let {currentUser} = this.props;
     return(
       <Fragment>
@@ -139,7 +51,7 @@ class LoginBox extends Component{
               <span id="info_lock"></span>
             </div>
             <div id="info_services">
-              <button id="btn_logout"><span id="btn_inr">로그아웃</span></button>
+              <button id="btn_logout" onClick={this.doLogout}><span id="btn_inr">로그아웃</span></button>
               <span className="link_cover">
                 <span id="link_mail">
                   <i>메일</i>
@@ -156,63 +68,218 @@ class LoginBox extends Component{
           </div>
         </div>
         <div id="service_tab">
-          <div id="slide_cover">
-            <div id="service_tab_list">
-              <CSSTransition active={pageRight}
-                defaultStyle={{transform: "translate(-100%)"}}
-                enterStyle={{transform: transit("translateX(0%)",300,"ease-in-out")}}
-                activeStyle={{transform: "translateX(0%)"}}
-                leaveStyle={{transform: transit("translateX(-100%)",300,"ease-in-out")}}
-                className="ulCon"
-              >
-                <ul id="page_right" ref={this.pageRight}>
-                  {page_right_lis}
-                </ul>
-              </CSSTransition>
-              <CSSTransition active={pageMiddle}
-                defaultStyle={{transform: "translateX(0%)"}}
-                enterStyle={{transform: transit("translateX(-100%)",300,"ease-in-out")}}
-                activeStyle={{transform: "translateX(-100%)"}}
-                leaveStyle={{transform: transit("translateX(-200%)",300,"ease-in-out")}}
-                className="ulCon"
-              >
-                <ul className="page_middle" ref={this.pageMiddle}>
-                  {page_middle_lis}
-                </ul>
-              </CSSTransition>
-              <CSSTransition active={pageLeft}
-                defaultStyle={{transform: "translateX(-100%)"}}
-                enterStyle={{transform: transit("translateX(-200%)",300,"ease-in-out")}}
-                activeStyle={{transform: "translateX(-200%)"}}
-                leaveStyle={{transform: transit("translateX(-100%)",300,"ease-in-out")}}
-                className="ulCon"
-              >
-                <ul id="page_left" ref={this.pageLeft}>
-                    {page_left_lis}
-                </ul>
-              </CSSTransition>
-              <CSSTransition active={pageMiddle2}
-                defaultStyle={{transform: "translateX(-400%)"}}
-                enterStyle={{transform: transit("translateX(-300%)",300,"ease-in-out")}}
-                activeStyle={{transform: "translateX(-300%)"}}
-                leaveStyle={{transform: transit("translateX(-200%)",300,"ease-in-out")}}
-                className="ulCon"
-              >
-                <ul className="page_middle" ref={this.pageMiddle}>
-                  {page_middle_lis}
-                </ul>
-              </CSSTransition>
-            </div>
-          </div>
-            <span className="slide_btn">
-              <div className="btn_text" onClick={this.shiftServicePage}>
-                <i>다음판 보기</i>
-              </div>
-            </span>
+          <UserTabs />
         </div>
       </Fragment>
     )
   }
 }
 
-export default LoginBox;
+function mapStateToProps(state){
+  return{
+    currentUser: state.user
+  }
+}
+function mapDispatchToProps(dispatch){
+  return{
+    doLogout: ()=> dispatch(logout())
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LoginBox);
+
+/*
+              <CSSTransition active={pageRight}
+                defaultStyle={{transform: "translate(-100%)"}}
+                enterStyle={{transform: transit("translateX("+{test}+"%)",300,"ease-in-out")}}
+                activeStyle={{transform: "translateX(0%)"}}
+                leaveStyle={{transform: transit("translateX(-100%)",300,"ease-in-out")}}
+                className="ulCon"
+              >
+                <ul id="page_right" className="service_uls" ref={this.pageRight}>
+                  {page_right_lis}
+                </ul>
+              </CSSTransition>
+              <CSSTransition active={pageMiddle && !this.state.pageMiddleBack}
+                defaultStyle={{transform: "translateX(100%)"}}
+                enterStyle={{transform: transit("translateX(0%)",300,"ease-in-out")}}
+                activeStyle={{transform: "translateX(0%)"}}
+                leaveStyle={{transform: transit("translateX(-100%)",300,"ease-in-out")}}
+                className="ulCon"
+              >
+                <ul className="page_middle" className="service_uls" ref={this.pageMiddle}>
+                  {page_middle_lis}
+                </ul>
+              </CSSTransition>
+              <CSSTransition active={pageLeft}
+                defaultStyle={{transform: "translateX(100%)"}}
+                enterStyle={{transform: transit("translateX(0%)",300,"ease-in-out")}}
+                activeStyle={{transform: "translateX(0%)"}}
+                leaveStyle={{transform: transit("translateX(100%)",300,"ease-in-out")}}
+                className="ulCon"
+              >
+                <ul id="page_left" className="service_uls" ref={this.pageLeft}>
+                    {page_left_lis}
+                    <li className="service_lis">
+                      <Link className="tab_noti tab_add_setting" to="/">
+                        <i>자주 사용하는 메뉴</i>
+                      </Link>
+                    </li>
+                </ul>
+              </CSSTransition>
+              <CSSTransition active={pageMiddle2}
+                defaultStyle={{transform: "translateX(-100%)"}}
+                enterStyle={{transform: transit("translateX(0%)",300,"ease-in-out")}}
+                activeStyle={{transform: "translateX(0%)"}}
+                leaveStyle={{transform: transit("translateX(100%)",300,"ease-in-out")}}
+                className="ulCon"
+              >
+                <ul className="page_middle service_uls" ref={this.pageMiddle}>
+                  {page_middle_lis}
+                </ul>
+              </CSSTransition>
+              <CSSTransition active={this.state.pageMiddleBack}
+                defaultStyle={{transform: "translateX(100%)"}}
+                enterStyle={{transform: transit("translateX(0%)",300,"ease-in-out")}}
+                activeStyle={{transform: "translateX(0%)"}}
+                leaveStyle={{transform: transit("translateX(100%)",300,"ease-in-out")}}
+                className="ulCon"
+              >
+                {(this.state.pageMiddleBack || pageRight || pageLeft) &&
+                  <ul className="page_middle service_uls">
+                  {page_middle_lis}
+                </ul>
+                }
+              </CSSTransition>
+              <CSSTransition active={this.state.pageMiddleBack2}
+                defaultStyle={{transform: "translateX(-100%)"}}
+                enterStyle={{transform: transit("translateX(0%)",300,"ease-in-out")}}
+                activeStyle={{transform: "translateX(0%)"}}
+                leaveStyle={{transform: transit("translateX(100%)",300,"ease-in-out")}}
+                className="ulCon"
+              >
+                {(this.state.pageMiddleBack2 || pageLeft || pageRight) &&
+                  <ul className="page_middle service_uls">
+                  {page_middle_lis}
+                </ul>
+                }
+              </CSSTransition>
+*/
+
+
+//   shiftServicePage(e){
+//     switch(this.state.currentServicePage){
+//       case(0):
+//         this.setState(prevState=>({
+//           direction: 'right',
+//           currentServicePage: 1,
+//           tabsChanged: true,
+//           servicePages:{
+//             ...prevState.servicePages,
+//             pageRight: false,
+//             pageMiddle:true
+//           },
+//           pageMiddleBack: true
+//         }))
+//         break;
+//       case(1):
+//         this.setState(prevState=>({
+//           direction: 'right',
+//           currentServicePage: 2,
+//           tabsChanged: true,
+//           servicePages:{
+//             ...prevState.servicePages,
+//             pageMiddle: false,
+//             pageLeft:true
+//           },
+//           pageMiddleBack: false,
+//           pageMiddleBack2: false
+//         }))
+//         break;
+//       case(2):
+//         this.setState(prevState=>({
+//           currentServicePage: 3,
+//           servicePages:{
+//             ...prevState.servicePages,
+//             pageLeft: false,
+//             // pageMiddle2:true
+//           }
+//         }))
+//         break;
+//       case(3):
+//         this.setState(prevState=>({
+//           currentServicePage: 2,
+//           servicePages:{
+//             ...prevState.servicePages,
+//             pageMiddle2: false,
+//             pageLeft:true
+//           },
+//           pageMiddleBack2: false
+//         }))
+//         break;
+//       default:
+//         this.setState(prevState=>({
+//           currentServicePage: 0,
+//           servicePages:{
+//             pageRight: true,
+//             pageMiddle: false,
+//             pageLeft: false,
+//             pageMiddle2: false
+//           },
+//           middleGoingBack: false
+//         }))
+//     }
+//   }
+// //https://css-tricks.com/animating-layouts-with-the-flip-technique/
+
+//   shiftServicePageBack(e){
+//     switch(this.state.currentServicePage){
+//       case(1):
+//         this.setState(prevState=>({
+//           direction: 'left',
+//           currentServicePage: 0,
+//           tabsChanged: true,
+//           servicePages:{
+//             ...prevState.servicePages,
+//             pageMiddle: false,
+//             pageRight:true
+//           },
+//           pageMiddleBack: false
+//         }))
+//         break;
+//       case(2):
+//         this.setState(prevState=>({
+//           direction: 'left',
+//           currentServicePage: 1,
+//           tabsChanged: true,
+//           servicePages:{
+//             ...prevState.servicePages,
+//             pageLeft: false,
+//             pageMiddle2:true
+//           },
+//           pageMiddleBack2: true
+//         }))
+//         break;
+//       case(3):
+//         this.setState(prevState=>({
+//           currentServicePage: 0,
+//           servicePages:{
+//             ...prevState.servicePages,
+//             pageMiddle2: false,
+//             pageRight:true
+//           },
+//           pageMiddleBack: false
+//         }))
+//         break;
+//       default:
+//         this.setState(prevState=>({
+//           currentServicePage: 0,
+//           servicePages:{
+//             pageRight: true,
+//             pageMiddle: false,
+//             pageLeft: false,
+//             pageMiddle2: false
+//           }
+//         }))
+//     }
+//   }

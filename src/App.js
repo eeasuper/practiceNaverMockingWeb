@@ -18,9 +18,9 @@ if(localStorage.jwtToken){
   setAuthorizationToken(localStorage.jwtToken);
   //prevent someone from manually tampering with the key of jwtToken in localStorage
   try{
-    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+    // store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
   } catch(e){ 
-    store.dispatch(setCurrentUser({}))
+    // store.dispatch(setCurrentUser({}))
   }
 }//this is hydration. If the server were to go down, or such, when the page refreshes we can still se a token in localStorage. If so, we can repopulate our state with the current user.
 

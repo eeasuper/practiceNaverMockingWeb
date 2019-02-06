@@ -1,0 +1,254 @@
+.header_container{
+    position: relative;
+z-index: 30;
+background: #00ab33 url(https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_gheader.dfb78f0a.jpg) no-repeat 100% 0;
+min-width: 990px;
+}
+
+.header_fix{
+
+}
+
+.in_upper_header_con{
+  position: relative;
+  height: 36px;
+}
+
+.in_upper_header_con:after{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  content: '';
+}
+
+.in_upper_header{
+  position: relative;
+width: 940px;
+clear: both;
+margin: 0 auto;
+}
+
+.upper_header_left{
+  float: left;
+padding: 11px 0 12px;
+}
+
+.upper_header_right{
+  position: relative;
+  float: right;
+  margin: 3px -9px 0 0;
+}
+
+.upper_header_left a{
+  overflow: hidden;
+  color: transparent;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.upper_header_logo{
+  background-image: url(https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/img/sprite/png/spSv_global.png);
+  background-size: 423px 400px;
+  background-position: -358px -234px;
+  width: 48px;
+  height: 13px;
+}
+
+.upper_header_pay{
+  background-image: url(https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/img/sprite/png/spSv_global.png);
+background-size: 423px 400px;
+background-position: -77px -253px;
+width: 67px;
+height: 13px;
+margin-left: 18px;
+}
+
+#gnb{
+  position: relative;
+z-index: 2147483646;
+font-family: '나눔고딕',NanumGothic,'돋움',Dotum,'Apple SD Gothic Neo',Helvetica,Sans-serif !important;
+color: #444;
+font-size: 12px;
+letter-spacing: 0 !important;
+line-height: normal !important;
+text-align: left !important;
+}
+
+#gnb ul{
+  list-style: none;
+  display: block;
+}
+
+.gnb_lis{
+  display: inline-block;
+}
+
+.gnb_namebox{
+  background-image: url("https://ssl.pstatic.net/static/common/gnb/2014/ico_arrow_wh.gif");
+  padding: 2px 9px 0 0;
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+}
+
+.gnb_namebox:after{
+  display: block;
+clear: both;
+content: '';
+}
+
+.gnb_my{
+  color: #444;
+  cursor: pointer;
+  float: left;
+display: block;
+font-size: 0;
+vertical-align: middle;
+background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v14.png) no-repeat -999px -999px;
+}
+.gnb_my img{
+  vertical-align: top;
+border-radius: 16px;
+display: inline-block;
+width: 26px;
+height: 26px;
+}
+
+a.gnb_my, .gnb_icon{
+  position: relative;
+}
+.gnb_login_li, .gnb_my_li, .gnb_notice_li, .mail_li, .gnb_service_li{
+  float: left;
+  overflow: visible;
+}
+.gnb_login_li a, .gnb_my_li a, .gnb_notice_li a, .mail_li a, .gnb_service_li a{
+  position: relative;
+  z-index: 100;
+}
+
+.filter_mask{
+  position: absolute;
+top: -1px;
+left: -1px;
+z-index: 1;
+width: 28px;
+height: 28px;
+background-position: -260px -60px;
+background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v14.png) no-repeat -999px -999px;
+}
+
+.gnb_name{
+  margin-right: -1px;
+padding-left: 5px;
+display: inline-block;
+height: 28px;
+line-height: 28px;
+vertical-align: top;
+font-size: 11px;
+color: #fff;
+cursor: pointer;
+}
+
+.gnb_namebox:hover .gnb_name{
+  text-decoration: underline;
+}
+
+.gnb_notice_li{
+  display: inline-block;
+margin-right: 2px;
+}
+
+.gnb_notice{
+  display: block;
+  width: 17px;
+height: 19px;
+padding: 6px 8px 3px;
+position: relative;
+z-index: 100;
+}
+
+.gnb_icon{
+  background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v14.png) no-repeat -999px -999px;
+  width: 17px;
+height: 19px;
+background-position: -220px -120px;
+display: block;
+
+cursor: pointer;
+}
+
+.lower_header_con{
+  height: 66px;
+}
+
+.lower_header{
+  position: relative;
+width: 940px;
+clear: both;
+margin: 0 auto;
+}
+
+.header_title{
+  float: left;
+width: 87px;
+padding-top: 19px;
+}
+
+.header_title a{
+  background-image: url(https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/img/sprite/png/spSv_global.png);
+background-size: 423px 400px;
+background-position: 0px -183px;
+width: 68px;
+height: 28px;
+overflow: hidden;
+color: transparent;
+display: block;
+}
+
+.header_search_area{
+  position: relative;
+float: left;
+width: 430px;
+padding-top: 16px;
+z-index: 10;
+}
+
+.search_con{
+  position: relative;
+float: left;
+width: 267px;
+height: 32px;
+padding-right: 81px;
+border: 1px solid #00b637;
+border-right: 0;
+background-color: #fff;
+}
+
+.search_input{
+  width: 100%;
+height: 18px;
+margin: 7px 0 0 10px;
+border: 0 none;
+font-size: 14px;
+font-weight: bold;
+line-height: 19px;
+color: #000;
+outline: medium none;
+}
+
+.search_icon{
+  position: absolute;
+top: -1px;
+right: 0;
+background-image: url(https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/img/sprite/png/spSv_global.png);
+background-size: 423px 400px;
+background-position: 0px -215px;
+width: 50px;
+height: 34px;
+overflow: hidden;
+color: transparent;
+display: block;
+border: none;
+}

@@ -1,0 +1,60 @@
+#page_right{
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 313px;
+  padding-right: 17px;
+  padding-left: 0px;
+}
+
+.ulCon{
+   position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.service_lis{
+    position: relative;
+  display: inline-block;
+  background-color: #fafafa;
+  vertical-align: top;
+  width: 52px;
+}
+
+.tab_noti{
+  font-size: 12px;
+  color: #444;
+  text-align: center;
+  display: block;
+  border-width: 1px 1px 0 0;
+  border-style: solid;
+  border-color: #ebeef3;
+  height: 18px;
+  line-height: 19px;
+  padding: 10px 0 8px;
+  text-decoration: none !important;
+}
+
+.tab_noti i{
+  font-style: normal;
+}
+
+.tab_noti:hover{
+  color: #000;
+  background-color: #f3f4f3;
+}
+
+.tab_add_setting i{
+  background-image: url(https://ssl.pstatic.net/static/common/myarea/sp_png_icon_66ded248.png);
+  background-size: 251px 232px;
+  background-position: -226px -91px;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  vertical-align: top;
+  position: relative;
+  top: 1px;
+}

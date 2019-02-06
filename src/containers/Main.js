@@ -8,7 +8,8 @@ import Homepage from '../components/Homepage/Homepage';
 import {authUser} from "../store/actions/auth";
 import LoginForm from '../components/LoginForm/LoginForm';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
-      
+import ShoppingPage from './ShoppingPage/ShoppingPage'
+
 class Main extends Component {
   componentDidUpdate(){
     // console.log(Object.keys(this.props.currentUser).length);
@@ -24,13 +25,19 @@ class Main extends Component {
         }/>
         <Route exact path="/signin" render={props=>{
             return(
-              <Homepage currentUser={this.props.currentUser}/>
+              <LoginForm onAuth={this.props.doAuth} history={this.props.history}/>
             )
           }
         }/>
         <Route exact path="/signup" render ={props=>{
             return(
-              <RegisterForm onAuth={this.props.doAuth} currentUser={this.props.currentUser} history={this.props.history}/>
+              <RegisterForm onAuth={this.props.doAuth} history={this.props.history}/>
+            )
+          }
+        }/>
+        <Route exact path="/shopping" render={props=>{
+            return(
+              <ShoppingPage currentUser={this.props.currentUser}/>
             )
           }
         }/>

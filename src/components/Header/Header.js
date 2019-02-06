@@ -9,7 +9,7 @@ class Header extends Component{
     const main_ul = ["메일","카페","블로그","지식iN","쇼핑", "Pay", "TV"].map((val, ind)=>{
       return (
         <li className="nav_main_li" key={ind}>
-          <Link className="nav_main_anc" to="/">
+          <Link className="nav_main_anc" to="/shopping">
             <span>{val}</span>
           </Link>
         </li>
@@ -37,14 +37,16 @@ class Header extends Component{
               </Link>
             </h1>
             <div id="header_links">
-              <a className="header_link" href="/">
-                네이버를 시작페이지로 
+              <a className="header_link_favorite" href="/">
+                네이버를 시작페이지로
+                <span className="al_ico_link"></span>
               </a>
-              <a className="header_link" href="/">
-                쥬니어네이버
+              <span className="al_bar"></span>
+              <a className="header_link_jr" href="/">
+                <span className="al_ico"></span>
               </a>
-              <a className="header_link" href="/">
-                해피빈
+              <a className="header_link_happy" href="/">
+                <span className="al_ico"></span>
               </a>
             </div>
             <div id="header_search">

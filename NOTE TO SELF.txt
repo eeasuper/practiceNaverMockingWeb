@@ -3,3 +3,6 @@ get around to add Bcrypt authentication in backend, currently it is using defaul
 Add Hateoas to Backend. For now it's just regular JSON.
 Go to this link:
 https://spring.io/guides/tutorials/rest/
+
+To build complex UI animation in react:
+https://css-tricks.com/building-a-complex-ui-animation-in-react-simply/

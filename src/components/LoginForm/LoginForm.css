@@ -1,0 +1,177 @@
+#login_header{
+  position: relative;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+height: 168px;
+padding: 62px 0 0;
+width: 768px;
+margin: 0 auto;
+}
+
+.h_logo{
+  display: block;
+overflow: hidden;
+width: 240px;
+height: 44px;
+margin: 0 auto;
+background-position: -1px -1px;
+font-size: 15px;
+color: transparent;
+}
+
+.sp{
+  background: url(https://static.nid.naver.com/images/ui/login/pc_sp_login_170424.png) no-repeat;
+}
+
+#login_container{
+  width: 768px;
+margin: 0 auto;
+padding-bottom: 50px;
+min-height: 185px;
+}
+
+#login_content{
+  width: 460px;
+margin: 0 auto;
+padding-bottom: 30px;
+}
+
+.login_form{
+  clear: both;
+  border: none;
+}
+
+#id_area, #pw_area{
+  position: relative;
+}
+
+.input_row{
+  position: relative;
+height: 29px;
+margin: 0 0 14px;
+padding: 10px 35px 10px 15px;
+border: solid 1px #dadada;
+background: #fff;
+}
+
+.focus{
+  border: 1px solid #08A600;
+}
+
+#pw_area_a{
+
+}
+
+.input_box{
+  display: block;
+overflow: hidden;
+}
+
+.lbl{
+  font-size: 15px;
+
+line-height: 16px;
+
+position: absolute;
+
+z-index: 8;
+
+top: 16px;
+
+left: 15px;
+
+color: #8e8e8e;
+}
+
+.int{
+  font-size: 15px;
+
+line-height: 16px;
+
+position: relative;
+
+z-index: 9;
+
+width: 100%;
+
+height: 16px;
+
+padding: 7px 0 6px;
+
+color: #000;
+
+border: none;
+
+background: #fff;
+
+-webkit-appearance: none;
+}
+
+.btn_global{
+  display: block;
+width: 100%;
+height: 61px;
+margin: 30px 0 14px;
+padding-top: 1px;
+border: none;
+border-radius: 0;
+background-color: #1fbc02;
+cursor: pointer;
+text-align: center;
+color: #fff;
+font-size: 20px;
+font-weight: 700;
+line-height: 61px;
+-webkit-appearance: none;
+}
+
+.btn_global:hover{
+  text-decoration: none;
+color: #fff;
+}
+
+.check_info{
+  position: relative;
+  margin-bottom: 29px;
+}
+
+.login_check_box{
+  position: relative;
+display: block;
+height: 26px;
+margin: 0 0 28px;
+}
+
+.login_check_box input{
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.login_check_box label{
+  background: url(https://static.nid.naver.com/images/ui/login/pc_sp_login_170424.png) no-repeat;
+  font-size: 12px;
+line-height: 26px;
+position: absolute;
+top: 0;
+left: 0;
+height: 26px;
+padding-left: 33px;
+cursor: pointer;
+color: #333;
+border: 1px solid #f5f6f7\9;
+background-position: -2px -115px;
+background-color: #f5f6f7;
+}
+
+.login_check_box input:checked + label{
+  background-position: -2px -145px;
+}
+
+.login_check_box input:focus ~ label{
+  outline: dotted thin;
+}

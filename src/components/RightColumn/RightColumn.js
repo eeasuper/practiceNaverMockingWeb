@@ -30,7 +30,7 @@ class RightColumn extends Component{
               <h2 className="blind">로그인</h2>
               <div id="login_con">
                 <p id="login_intro">네이버를 더 안전하고 편리하게 이용하세요.</p>
-                <Link id="login_button" to="/" onClick={this.handleClick}>
+                <Link id="login_button" to="/signin" onClick={this.handleClick}>
                   <img src={LoginBar} alt="LoginBar"/>
                 </Link>
                 <div id="login_links">
@@ -43,7 +43,7 @@ class RightColumn extends Component{
                 </div>
               </div>
               </Fragment>}
-            {isUserLoggedIn && <LoginBox currentUser={this.props.currentUser}/>}
+            {isUserLoggedIn && <LoginBox/>}
           </div>
         </div>
       </div>
