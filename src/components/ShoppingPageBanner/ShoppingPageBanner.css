@@ -1,16 +1,57 @@
 .banner_con_outer{
   position: relative;
 margin-bottom: 22px;
-height: 167px;
 }
 
 .banner_con_inner{
   position: relative;
 overflow: hidden;
+text-align: center;
+}
+.arrowCon{
+  position: relative;
+}
+.left_arrow{
+  position: relative;
+  min-width: 35px;
+  min-height: 40px;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MDcuNDM2IDQwNy40MzYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQwNy40MzYgNDA3LjQzNjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8cG9seWdvbiBwb2ludHM9IjExMi44MTQsMCA5MS41NjYsMjEuMTc4IDI3My41MTIsMjAzLjcxOCA5MS41NjYsMzg2LjI1OCAxMTIuODE0LDQwNy40MzYgMzE1Ljg2OSwyMDMuNzE4ICIgZmlsbD0iI0ZGRkZGRiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K);
+  background-size: cover;
+  opacity: 0.7;
+  display: block;
+  transform: scaleX(-1);
+}
+.right_arrow{
+  position: relative;
+  min-width: 35px;
+  min-height: 40px;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MDcuNDM2IDQwNy40MzYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQwNy40MzYgNDA3LjQzNjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8cG9seWdvbiBwb2ludHM9IjExMi44MTQsMCA5MS41NjYsMjEuMTc4IDI3My41MTIsMjAzLjcxOCA5MS41NjYsMzg2LjI1OCAxMTIuODE0LDQwNy40MzYgMzE1Ljg2OSwyMDMuNzE4ICIgZmlsbD0iI0ZGRkZGRiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K);
+  background-size: cover;
+  opacity: 0.7;
+  display: block;
+}
+.left_button{
+  z-index: 2001;
+  top: 35%;
+  position: absolute;
+  width: 35px;
+  height: 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.right_button{
+  z-index: 2001;
+  top: 35%;
+  /*right: 50%;*/
+  position: absolute;
+  width: 35px;
+  height: 40px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .banner_con{
-  padding: 0px 472.5px;
   overflow: hidden;
   box-sizing: border-box;
   touch-action: pan-y;
@@ -51,7 +92,35 @@ overflow: hidden;
   border-bottom: solid 5px #e5e5e5;
 }
 
-.anchor_selected{
+.flick_anchor:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  content: '';
+}
+
+.flick_anchor[aria-selected="true"]:before{
+  background-color: rgba(0, 0, 0, 0.1)
+}
+
+.flick_anchor[aria-selected="true"]:after{
+  border-top-color: #8452c7;
+}
+
+.flick_anchor:after{
+  position: absolute;
+  bottom: -23px;
+  left: 50%;
+  margin-left: -8px;
+  border: 9px solid transparent;
+  border-top-width: 10px;
+  content: '';
+}
+
+.flick_anchor[aria-selected="true"]{
   border-color: #8452c7;
 }
 
@@ -64,5 +133,35 @@ overflow: hidden;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  opacity: 0.7;
+}
+
+.flick_anchor[aria-selected="true"] .flick_details{
+  opacity: 1;
+}
+
+.flick_floor{
+  position: relative;
+  display: inline-block;
+  margin-top: 4px;
+  padding-bottom: 5px;
+  border-bottom: 4px solid #fff;
+}
+
+.floor_before_pseudo_el{
+  width: 24px;
+  height: 16px;
+  display: block;
+  content: '';
+}
+
+.flick_name{
+  margin-top: 12px;
+  color: #fff;
+  font-family: 나눔스퀘어, 'Nanum Square', 나눔고딕, 'Nanum Gothic', 'Apple SD Gothic Neo', 'Malgun Gothic', '\B9D1\C740 \ACE0\B515', 'Dotum', '\B3CB\C6C0', 'sans-serif';
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
 }
 
