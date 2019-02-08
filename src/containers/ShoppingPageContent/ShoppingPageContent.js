@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ShoppingPageContent.css'
-import ShoppingPageBanner from '../ShoppingPageBanner/ShoppingPageBanner'
-
+import ShoppingPageBanner from '../../components/ShoppingPageBanner/ShoppingPageBanner'
+import ShoppingPageMainContent from '../../components/ShoppingPageMainContent/ShoppingPageMainContent';
 
 function ShoppingPageContent(props){
 
@@ -32,6 +32,7 @@ function ShoppingPageContent(props){
         </ul>
       </div>
       <ShoppingPageBanner/>
+      <ShoppingPageMainContent/>
     </div>
   )
 

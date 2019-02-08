@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ShoppingHeader from '../../components/ShoppingHeader/ShoppingHeader'
 import './ShoppingPage.css'
-import ShoppingPageContent from '../../components/ShoppingPageContent/ShoppingPageContent'
+import ShoppingPageContent from '../ShoppingPageContent/ShoppingPageContent'
 
 class ShoppingPage extends Component{
   constructor(props){

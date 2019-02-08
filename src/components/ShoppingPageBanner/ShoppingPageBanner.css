@@ -43,7 +43,6 @@ text-align: center;
 .right_button{
   z-index: 2001;
   top: 35%;
-  /*right: 50%;*/
   position: absolute;
   width: 35px;
   height: 40px;
@@ -54,7 +53,7 @@ text-align: center;
 .banner_con{
   overflow: hidden;
   box-sizing: border-box;
-  touch-action: pan-y;
+  touch-action: pan-x;
   -moz-user-select: none;
   font-size: 0;
   white-space: nowrap;
@@ -81,6 +80,7 @@ text-align: center;
   left: 0px;
   transform: translate(400%, 0px);
   will-change: transform;
+  cursor: pointer;
 }
 
 .flick_anchor{

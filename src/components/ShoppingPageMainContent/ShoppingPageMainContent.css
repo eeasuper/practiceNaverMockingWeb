@@ -1,0 +1,129 @@
+.products_container{
+  width: 940px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+.products_ul{
+  position: relative;
+  height: 2390px;
+  /*margin: -30px -5px;*/
+  overflow: hidden;
+}
+
+.product_li{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+padding: 30px 5px;
+vertical-align: top;
+display: inline-block;
+}
+
+.product_div{
+  position: relative;
+cursor: pointer;
+border-bottom: 1px solid #bfbfbf;
+}
+
+.product_thumbnail{
+  overflow: hidden;
+position: relative;
+height: 260px;
+}
+.product_thumbnail img{
+  max-width: 110%;
+  max-height: 100%;
+  transform: translateX(-5%);
+}
+
+.product_thumbnail button{
+  position: absolute;
+z-index: 10;
+right: 0;
+bottom: 0;
+padding: 10px;
+border: none;
+background-color: transparent;
+cursor: pointer;
+}
+.product_thumbnail button:before{
+  display: inline-block;
+background-image: url(https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/img/sprite/svg/spSw_window_list_svg.svg);
+background-size: 243px 224px;
+background-position: -202px -89px;
+width: 30px;
+height: 30px;
+vertical-align: top;
+content: '';
+}
+
+.product_details{
+  position: relative;
+height: 102px;
+padding-top: 17px;
+color: #222;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+.product_price{
+  display: inline-block;
+margin-top: -3px;
+height: 20px;
+font-size: 14px;
+vertical-align: top;
+}
+
+.product_price_span{
+  display: inline-block;
+margin-right: 1px;
+font-family: HelveticaNeue, AppleSDGothicNeo, sans-serif;
+font-size: 18px;
+line-height: 23px;
+font-weight: bold;
+vertical-align: top;
+}
+
+.product_price span:nth-child(2){
+  display: inline-block;
+font-size: 14px;
+line-height: 23px;
+vertical-align: top;
+}
+
+.product_description{
+  /*display: block;*/
+overflow: hidden;
+/*-o-text-overflow: ellipsis;*/
+text-overflow: ellipsis;
+line-height: 16px;
+display: -webkit-box;
+max-height: 32px;
+white-space: normal;
+word-wrap: break-word;
+word-break: keep-all;
+/*-webkit-line-clamp: 2;*/
+-webkit-box-orient: vertical;
+height: 32px;
+margin-top: 8px;
+}
+
+.product_anchor{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.product_div:hover .product_thumbnail{
+  /*border: 1px solid purple;*/
+  box-shadow: 0 0 0 1px purple,0.5px 0 0 1px purple;
+}
+
+.product_div:hover .product_details{
+  text-decoration: underline;
+}

@@ -1,5 +1,5 @@
 import React, { Component,Fragment } from 'react';
-
+import Flipping from 'flipping'
 import './ShoppingPageBanner.css'
 
 class ShoppingPageBanner extends Component{
@@ -21,6 +21,7 @@ class ShoppingPageBanner extends Component{
     this.getPadding = this.getPadding.bind(this);
     this.getMarginLeft = this.getMarginLeft.bind(this);
     this.handleArrowClick = this.handleArrowClick.bind(this);
+    this.handleBoxClick = this.handleBoxClick.bind(this);
   }
   // const [selectedBox, setSelectedBox] = useState(0);
   // const [hovering, setHovering] = useState(false);
@@ -31,11 +32,22 @@ class ShoppingPageBanner extends Component{
   // })
 
   componentDidMount(){
-    window.addEventListener("resize", this.updateDimensions);  
+    window.addEventListener("resize", this.updateDimensions);
+    this.flipping = new Flipping({
+    })
+
+    this.flipping.read();
+  }
+
+  componentWillUpdate(){
+     this.flipping.read();
   }
 
   shouldComponentUpdate(nextProps, nextState){
     return nextState.timeoutID === 0
+  }
+  componentDidUpdate(){
+    this.flipping.flip();
   }
 
   updateDimensions(){
@@ -85,22 +97,14 @@ class ShoppingPageBanner extends Component{
     }))
   }
   getTranslateDegrees(ind){
-    let order = [
-            [0,1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9,0],
-            [2,3,4,5,6,7,8,9,0,1],
-            [3,4,5,6,7,8,9,0,1,2],
-            [4,5,6,7,8,9,0,1,2,3],
-            [5,6,7,8,9,0,1,2,3,4],
-            [6,7,8,9,0,1,2,3,4,5],
-            [7,8,9,0,1,2,3,4,5,6],
-            [8,9,0,1,2,3,4,5,6,7],
-            [9,0,1,2,3,4,5,6,7,8]
-          ];
-        let state1 = order.find((e)=>{
-          return e.indexOf(this.state.selectedBox) === 4;
-        });
-        let index= state1.indexOf(ind);
+    const order=[0,1,2,3,4,5,6,7,8,9];
+    const produceArray = (x)=>{
+      let b = order.slice(x-4);
+      let c = order.slice(0,x-4);
+
+      return b.concat(c)
+    }
+    const index = produceArray(this.state.selectedBox).indexOf(ind);
     return (index * 100).toString() + "%";
   }
 
@@ -173,7 +177,14 @@ class ShoppingPageBanner extends Component{
       }))
     }
   }
-  componentDidUpdate(){
+
+  handleBoxClick(e){
+    console.log(e.target)
+    const newSelectedBox = parseInt(e.target.attributes.index.value);
+    this.setState(prevState=>({
+      ...prevState,
+      selectedBox: newSelectedBox
+    }))
   }
 
   render(){
@@ -228,19 +239,23 @@ class ShoppingPageBanner extends Component{
         backgroundSize: '672px 612px'
       }
       let currentDegree = this.getTranslateDegrees(ind);
-      let transform = {
+      let transformForLastAndFirstEls = {
         transform: 'translateX('+currentDegree+')'
+      }
+      let transform = {
+        transform: 'translateX('+currentDegree+')',
+        transition: 'transform 200ms linear'
       }
 
       return(
           <Fragment key={ind}> 
-            <div className="flick_component" style={transform}>
-              <a className="flick_anchor" style={backgroundImage} aria-selected={this.state.selectedBox === ind}>
-                <div className="flick_details">
-                  <span className="flick_floor">
-                    <div className="floor_before_pseudo_el" style={floor}></div>
+            <div index={ind} className="flick_component" style={(currentDegree === "900%") || (currentDegree === "0%")? transformForLastAndFirstEls:transform} onClick={this.handleBoxClick}>
+              <a index={ind} className="flick_anchor" style={backgroundImage} aria-selected={this.state.selectedBox === ind}>
+                <div index={ind} className="flick_details">
+                  <span index={ind} className="flick_floor">
+                    <div index={ind} className="floor_before_pseudo_el" style={floor}></div>
                   </span>
-                  <p className="flick_name">{val.name}</p>
+                  <p index={ind} className="flick_name">{val.name}</p>
                 </div>
               </a>
             </div>
@@ -326,12 +341,12 @@ when state is 7: [3,4,5,6,7,8,9,0,1,2];
 
 when state is 9: [5,6,7,8,9,0,1,2,3,4];
 
-  [0,1,2,3,4,5,6,7,8,9].reduce((acc,cur)=>{
-    let  = state+a;
-    let lastInd = state+5;
-    let firstInd = state-4 <0 ? 10+(state-4): state-4;
-    let x = Math.abs(cur-lastInd)
-    return acc
-  },[])
+    [0,1,2,3,4,5,6,7,8,9].reduce((acc,cur)=>{
+      let  = state+a;
+      let lastInd = state+5;
+      let firstInd = state-4 <0 ? 10+(state-4): state-4;
+      let x = Math.abs(cur-lastInd)
+      return acc
+    },[])
 
       */
