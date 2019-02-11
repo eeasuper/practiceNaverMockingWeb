@@ -1,22 +1,38 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 
 import ShoppingHeader from '../../components/ShoppingHeader/ShoppingHeader'
 import './ShoppingPage.css'
 import ShoppingPageContent from '../ShoppingPageContent/ShoppingPageContent'
+import ShoppingButton from '../../components/ShoppingButton/ShoppingButton'
+import {removeFromCart,fetchCart, addToCart} from '../../store/actions/cart';
 
 class ShoppingPage extends Component{
-  constructor(props){
-    super(props)
-  }
+
 
   render(){
     return(
       <div>
         <ShoppingHeader currentUser = {this.props.currentUser}/>
-        <ShoppingPageContent/>
+        <ShoppingPageContent onAdd={this.props.doAdd}/>
+        <ShoppingButton onRemove={this.props.doRemove} onFetch={this.props.doFetch} onAdd={this.props.doAdd} cart={this.props.cart}/>
       </div>
     )
   }
 }
 
-export default ShoppingPage;
+function mapStateToProps(state){
+  return{
+    cart: state.cart
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    doRemove: (user_id,product_id)=> dispatch(removeFromCart(user_id,product_id)),
+    doFetch: ()=> dispatch(fetchCart()),
+    doAdd: (product)=> dispatch(addToCart(product))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingPage);

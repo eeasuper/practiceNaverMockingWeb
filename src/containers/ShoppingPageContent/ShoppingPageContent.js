@@ -31,8 +31,8 @@ function ShoppingPageContent(props){
           </li>
         </ul>
       </div>
-      <ShoppingPageBanner/>
-      <ShoppingPageMainContent/>
+      <ShoppingPageBanner />
+      <ShoppingPageMainContent onAdd={props.onAdd}/>
     </div>
   )
 

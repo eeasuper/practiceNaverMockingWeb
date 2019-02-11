@@ -52,7 +52,7 @@ class ShoppingPageBanner extends Component{
 
   updateDimensions(){
     if(this.state.timeoutID === 0){
-      console.log("FF")
+      
       let timeout = setTimeout(function(){
         // setWindowSize({
         //   x: window.innerWidth,

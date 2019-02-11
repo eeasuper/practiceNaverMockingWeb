@@ -25,7 +25,7 @@ class Main extends Component {
         }/>
         <Route exact path="/signin" render={props=>{
             return(
-              <LoginForm onAuth={this.props.doAuth} history={this.props.history}/>
+              <LoginForm  onAuth={this.props.doAuth} history={this.props.history}/>
             )
           }
         }/>
@@ -48,12 +48,12 @@ class Main extends Component {
 
 function mapStateToProps(state){
   return{
-    currentUser: state.user
+    currentUser: state.currentUser
   }
 }
 function mapDispatchToProps(dispatch){
   return{
-    doAuth:  ()=> dispatch(authUser())
+    doAuth:  (type,state)=> dispatch(authUser(type,state))
   };
 }
 

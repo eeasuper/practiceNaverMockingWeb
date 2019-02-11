@@ -16,11 +16,10 @@ class RightColumn extends Component{
     console.log(this.props.currentUser);
   }
   componentDidUpdate(){
-    console.log(this.props.currentUser.length);
   }
 
   render(){
-    let isUserLoggedIn = !!Object.keys(this.props.currentUser).length
+    let isUserLoggedIn = this.props.currentUser.isAuthenticated
     return(
       <div  id="homepage_container">
         <div id="column_right">

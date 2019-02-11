@@ -10,14 +10,42 @@ export function setTokenHeader(token){
 
 
 export function apiCall(method, path, data){
+  
   return new Promise((resolve, reject)=>{
-    let data = {
-      token: "ASDFWEFDf1244y231Ff",
-      username: "TEST_USERNAME",
-      name: "TEST_NAME",
-      password: "TEST_PASSWORD"
+    let data1;
+    if(path === "localhost:8080/register" || path === "localhost:8080/login"){
+      console.log("FFF")
+      data1 = {
+        token: "ASDFWEFDf1244y231Ff",
+        username: "TEST_USERNAME",
+        name: "TEST_NAME",
+        password: "TEST_PASSWORD",
+        id: "TEST_ID"
+      }  
     }
-    return resolve(data)
+    if((path === "/users/TEST_ID/cart" || path === "/users/undefined/cart") && method==="get"){
+      data1 = {
+        product_one:{
+          product_name: "PRODUCT_TEST_NAME",
+          product_id: "PRODUCT_TEST_ID",
+          product_price: "PRODUCT_TEST_PRICE",
+          product_desc: "PRODUCT_TEST_DESC"
+        },
+        product_two:{
+          product_name: "PRODUCT_TEST_NAME2",
+          product_id: "PRODUCT_TEST_ID2",
+          product_price: "PRODUCT_TEST_PRICE2",
+          product_desc: "PRODUCT_TEST_DESC2"
+        }
+      }
+    }
+    if((path === "/users/TEST_ID/cart"|| path === "/users/undefined/cart") && method==="post"){
+      data1 = data;
+    }else{
+      data1 = {};  
+    }
+    
+    return resolve(data1)
   })
 
   //=================

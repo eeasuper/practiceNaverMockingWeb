@@ -35,7 +35,7 @@ class LoginBox extends Component{
   render(){
 
     let test = 0;
-    // const {pageLeft,pageRight,pageMiddle,pageMiddle2,pageRight2} = this.state.servicePages;
+    
     let {currentUser} = this.props;
     return(
       <Fragment>
@@ -44,7 +44,7 @@ class LoginBox extends Component{
             <img src={ProfileIcon} alt="Profile Icon" id="user_thumbnail"></img>
             <div id="info_title">
               <span id="info_username">
-                <strong>{currentUser.username}</strong>
+                <strong>{currentUser.user.username}</strong>
                 님
               </span>
               <span id="link_myinfo">내정보</span>
@@ -77,7 +77,7 @@ class LoginBox extends Component{
 
 function mapStateToProps(state){
   return{
-    currentUser: state.user
+    currentUser: state.currentUser
   }
 }
 function mapDispatchToProps(dispatch){
