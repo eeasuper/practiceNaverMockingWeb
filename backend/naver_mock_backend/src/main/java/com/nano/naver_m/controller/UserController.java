@@ -1,15 +1,20 @@
 package com.nano.naver_m.controller;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +31,11 @@ import com.nano.naver_m.repository.UserRepository;
 import com.nano.naver_m.services.SignInService;
 import com.nano.naver_m.services.SignUpService;
 import com.nano.naver_m.services.TokenAuthenticationService;
-
 @RestController
 //@CrossOrigin
 public class UserController {
 	private final UserRepository repository;
 	private final UserResourceAssembler assembler;
-	
 	
 	UserController(UserRepository repository, UserResourceAssembler assembler){
 		this.repository = repository;
@@ -47,8 +50,22 @@ public class UserController {
 	
 	@GetMapping("/users")
 	public
-	List<User> all(){
-		return repository.findAll();
+	Resources<Resource<User>> all(){
+		//create new UserResource object for each user found by findall().
+		//put them all in a List to use stream() on. Then do rest of the code.
+//		List<User> users = new ArrayList<User>();
+		
+//		repository.findAll().stream()
+//				.forEach((user)->{
+//					UserResource userRes = new UserResource(user.getToken(),user, user.getId());
+//					users.add(userRes);
+//				});
+		List<Resource<User>> user = repository.findAll().stream().map(assembler::toResource)
+				.collect(Collectors.toList());
+		
+		return new Resources<>(user,
+					linkTo(methodOn(UserController.class).all()).withSelfRel());
+				
 	}
 	
 //	@CrossOrigin(origins = "http://localhost:3000")
@@ -57,10 +74,10 @@ public class UserController {
 	ResponseEntity<?> newUser(@RequestBody User newUser, HttpServletResponse res) throws URISyntaxException {
 
 		User user = signupService.signup(res, newUser);
-		String JWTtoken = TokenAuthenticationService.addAuthentication(res, user.getUsername());
-		UserResource userResource = new UserResource(JWTtoken,user,user.getId()); 
+		String jWTtoken = TokenAuthenticationService.addAuthentication(newUser);
+//		UserResource userResource = new UserResource(jWTtoken,user,user.getId()); 
 		
-		Resource<UserResource> resource = assembler.toResource(userResource);
+		Resource<User> resource = assembler.toResource(user);
 		return ResponseEntity
 				.created(new URI(resource.getId().expand().getHref()))
 				.body(resource);
@@ -69,10 +86,10 @@ public class UserController {
 	@PostMapping("/login")
 	ResponseEntity<?> signIn(HttpServletResponse res, @PathVariable String username,  @PathVariable String password) throws URISyntaxException{
 		User user = signinService.signIn(res, username, password);
-		String JWTtoken= TokenAuthenticationService.addAuthentication(res, user.getUsername());
-		UserResource userResource = new UserResource(JWTtoken,user,user.getId()); 
+		String jWTtoken= TokenAuthenticationService.addAuthentication(user);
+//		UserResource userResource = new UserResource(jWTtoken,user,user.getId()); 
 		
-		Resource<UserResource> resource = assembler.toResource(userResource);
+		Resource<User> resource = assembler.toResource(user);
 
 		return ResponseEntity
 				.created(new URI(resource.getId().expand().getHref()))

@@ -11,10 +11,9 @@ public class UserResource  extends ResourceSupport {
 	
 	public UserResource(String jWTtoken, User user, long userId) {
 		super();
-		JWTtoken = jWTtoken;
+		this.JWTtoken = jWTtoken;
 		this.user = user;
 		this.userId = userId;
 	}
-	
 	
 }

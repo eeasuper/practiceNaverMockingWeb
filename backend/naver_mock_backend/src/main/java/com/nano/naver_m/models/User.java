@@ -1,19 +1,24 @@
 package com.nano.naver_m.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class User {
-	private @Id @GeneratedValue Long id;
-	private String name;
-	private String username;
-	private String password;
-	private String email;
+	private @Id @GeneratedValue @Column(nullable=false) Long id;
+	private @Column(nullable=false) String  name;
+	private @Column(nullable=false) String username;
+	private @Column(nullable=false) String password;
+	private @Column(nullable=false) String email;
+	private String token;
 	
 	public User(){
 	}
+
+	
+
 
 	public User(String name, String username, String password, String email) {
 		super();
@@ -22,9 +27,25 @@ public class User {
 		this.password = password;
 		this.email = email;
 	}
+	public User(String token, String name, String username, String password, String email) {
+		super();
+		this.token = token;
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+	}
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public void setId(Long id) {

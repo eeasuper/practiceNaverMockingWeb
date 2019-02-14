@@ -11,3 +11,7 @@ https://css-tricks.com/building-a-complex-ui-animation-in-react-simply/
 
 clicking on shopping product should increase quantity...
 make  that happen when connecting to backend...
+
+things that could be improved: 
+--the design of the popupmenu from /shopping. 
+--->could do: green to purple gradient for the borders of the menu. On hover, make box background have a darker gray color, make it wider, add some more padding(to give more space).

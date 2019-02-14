@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, {} from 'react';
+import {Link} from "react-router-dom";
+
 import './ShoppingPageContent.css'
 import ShoppingPageBanner from '../../components/ShoppingPageBanner/ShoppingPageBanner'
 import ShoppingPageMainContent from '../../components/ShoppingPageMainContent/ShoppingPageMainContent';
@@ -10,24 +12,24 @@ function ShoppingPageContent(props){
       <div className="content_header_tabs">
         <ul>
           <li className="presentation_tab">
-            <a className="presentation_tab_a">
+            <Link className="presentation_tab_a" to="/shopping">
               <div id="presentation_tab_div1" className="presentation_tab_div"></div>
-            </a>
+            </Link>
           </li>
           <li className="presentation_tab">
-            <a className="presentation_tab_a">
+            <Link className="presentation_tab_a" to="/shopping">
               <div id="presentation_tab_div2" className="presentation_tab_div"></div>
-            </a>
+            </Link>
           </li>
           <li className="presentation_tab">
-            <a className="presentation_tab_a">
+            <Link className="presentation_tab_a" to="/shopping">
               <div id="presentation_tab_div3" className="presentation_tab_div"></div>
-            </a>
+            </Link>
           </li>
           <li className="presentation_tab">
-            <a className="presentation_tab_a">
+            <Link className="presentation_tab_a" to="/shopping">
               <div id="presentation_tab_div4" className="presentation_tab_div"></div>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

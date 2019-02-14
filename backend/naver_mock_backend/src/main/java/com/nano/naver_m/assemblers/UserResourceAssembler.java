@@ -11,13 +11,13 @@ import com.nano.naver_m.controller.UserController;
 import com.nano.naver_m.models.User;
 
 @Component
-public class UserResourceAssembler implements ResourceAssembler<UserResource, Resource<UserResource>> {
+public class UserResourceAssembler implements ResourceAssembler<User, Resource<User>> {
 
 
 	@Override
-	public Resource<UserResource> toResource(UserResource userResource) {
-		Resource<UserResource> resource = new Resource<>(userResource, 
-					linkTo(methodOn(UserController.class).one(userResource.userId)).withSelfRel(),
+	public Resource<User> toResource(User user) {
+		Resource<User> resource = new Resource<>(user, 
+					linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
 					linkTo(methodOn(UserController.class).all()).withRel("users"));
 
 		return resource;

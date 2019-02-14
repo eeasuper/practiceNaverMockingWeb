@@ -1,0 +1,53 @@
+backend response to /register:
+{
+  token: "!$!@#!@#",
+  username: "",
+  userID: "",
+  //NO PASSWORD
+  email: ""
+}
+
+backend response to /login:
+//same as above.
+
+backend response to /api/products (GET):
+{
+  {
+    name: "",
+    id: "",
+    price: "",
+    picture: "" //ACTUAL PICTURE
+  },
+  ...
+}
+
+backend response to /users/{id}/cart (GET): 
+//login required.
+{
+  id:{
+    name: "",
+    id: "",
+    price: "",
+    picture: "" //ACTUAL PICTURE
+  },
+  id2:{
+    ...
+  }
+}
+
+backend response to /users/{id}/cart (POST):
+{
+  id:{
+    name: "",
+    id: "",
+    price: "",
+    picture: "" //ACTUAL PICTURE
+  },
+  id2:{
+    ...
+  },
+  id3:{
+    new one added here...?
+  }
+}
+

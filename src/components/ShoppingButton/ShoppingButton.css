@@ -24,14 +24,14 @@
 @keyframes bouncingButton{
   0%{
   }
-  25%{
-    bottom: 50px;
+  27%{
+    bottom: 47px;
   }
-  40%{
+  35%{
     bottom: 30px;
   }
   60%{
-    bottom: 45px;
+    bottom: 43px;
   }
   70%{
     bottom: 30px;

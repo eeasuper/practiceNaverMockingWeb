@@ -14,23 +14,20 @@ import com.nano.naver_m.repository.UserRepository;
 public class SignUpService {
 	@Autowired
 	UserRepository repository;
-//	@Autowired
+	
+	@Autowired
 //	private BCryptPasswordEncoder passwordEncoder;
 	
-//	SignUpService(UserRepository repository){
-//		this.repository = repository;
-//	}
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        return bCryptPasswordEncoder;
-//    }
+	SignUpService(UserRepository repository){
+		this.repository = repository;
+	}
     
 	public User signup(HttpServletResponse res, User user){
 //		String encryptedPassword = this.passwordEncoder.encode(user.getPassword());
 //		user.setPassword(encryptedPassword);
-
 		repository.save(user);
+		//I think there's no need to set password as the encrypted password and send it as response.
+		user.setPassword(null);
 		return user;
 	}
 		

@@ -14,7 +14,6 @@ export function apiCall(method, path, data){
   return new Promise((resolve, reject)=>{
     let data1;
     if(path === "localhost:8080/register" || path === "localhost:8080/login"){
-      console.log("FFF")
       data1 = {
         token: "ASDFWEFDf1244y231Ff",
         username: "TEST_USERNAME",
@@ -23,7 +22,7 @@ export function apiCall(method, path, data){
         id: "TEST_ID"
       }  
     }
-    if((path === "/users/TEST_ID/cart" || path === "/users/undefined/cart") && method==="get"){
+    else if((path === "/users/TEST_ID/cart" || path === "/users/undefined/cart") && method==="get"){
       data1 = {
         product_one:{
           product_name: "PRODUCT_TEST_NAME",
@@ -39,7 +38,7 @@ export function apiCall(method, path, data){
         }
       }
     }
-    if((path === "/users/TEST_ID/cart"|| path === "/users/undefined/cart") && method==="post"){
+    else if((path === "/users/TEST_ID/cart"|| path === "/users/undefined/cart") && method==="post"){
       data1 = data;
     }else{
       data1 = {};  

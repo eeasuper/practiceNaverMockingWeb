@@ -20,7 +20,7 @@ class Header extends Component{
       "영화", "뮤직", "책", "웹튠"].map((val, ind)=>{
         return (
           <li className="nav_second_li" key={ind}>
-            <Link className="nav_second_anc" to="/">
+            <Link className="nav_second_anc" to="/shopping">
               <span>{val}</span>
             </Link>
           </li>

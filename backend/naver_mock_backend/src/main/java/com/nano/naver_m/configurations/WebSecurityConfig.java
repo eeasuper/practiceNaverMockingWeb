@@ -6,20 +6,13 @@
 //import org.springframework.boot.web.servlet.FilterRegistrationBean;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
+//import org.springframework.hateoas.config.EnableHypermediaSupport;
 //import org.springframework.http.HttpMethod;
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 //import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.core.userdetails.User;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.web.header.writers.StaticHeadersWriter;
-//import org.springframework.web.cors.CorsConfiguration;
-//import org.springframework.web.cors.CorsConfigurationSource;
-//import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-//import org.springframework.web.filter.CorsFilter;
 //
 //import com.nano.naver_m.repository.UserRepository;
 //
@@ -48,33 +41,17 @@
 //    	//addFilterBefore(corsFilter(), HeaderFilter.class)
 //        http.cors().and().csrf().disable().authorizeRequests()
 //                // No need authentication.
-//                .antMatchers("/").permitAll() //
+//                .antMatchers("/").permitAll()
 //                .antMatchers(HttpMethod.POST, "/login").permitAll() //
 //                .antMatchers(HttpMethod.GET, "/login").permitAll() // For Test on Browser
 //                .antMatchers(HttpMethod.POST, "/register").permitAll()
+//                .antMatchers(HttpMethod.GET, "/users/1/cart").permitAll()
+//                .anyRequest().permitAll() // this line is for test.
 //                .and().headers().frameOptions().disable();
-////                .and().headers()
-////                // the headers you want here. This solved all my CORS problems! 
-////                .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "http://localhost:3000"))
-////                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "POST"))
-////                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
-////                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials", "true"))
-////                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Content-Type, Origin"));
+////                .and().headers()                
 //                // Need authentication.
-////                .anyRequest().authenticated()
-//                //
-////                .and()
-//                
-//                //
-//                // Add Filter 1 - JWTLoginFilter
-//                //
-////                .addFilterBefore(new JWTLoginFilter("/login", authenticationManager(), repository),
-////                        UsernamePasswordAuthenticationFilter.class)
-//                //
-//                // Add Filter 2 - JWTAuthenticationFilter
-//                //
-////                .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-////        http.headers().frameOptions().disable();
+//                .anyRequest().authenticated()
+//        http.headers().frameOptions().disable();
 //    }
 // 
 //    @Bean

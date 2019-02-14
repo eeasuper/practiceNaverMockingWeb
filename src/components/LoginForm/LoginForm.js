@@ -1,4 +1,4 @@
-import React, { useState,Component } from 'react';
+import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 // import {connect} from "react-redux";
 // import {authUser} from "../../store/actions/auth";
@@ -60,7 +60,12 @@ import './LoginForm.css'
                     <div className="input_row">
                       <span className="input_box">
                         <label htmlFor="loginId" id="label_id_area" className="lbl" >아이디</label>
-                        <input type="text" id="loginId" name="username" placeholder="아이디" className="int" maxLength="41" onChange={e => this.setState(prevState=>({...prevState,username:e.target.value}))} onFocus={this.handleFocus} onBlur={this.handleBlur}/>
+                        <input type="text" id="loginId" name="username" placeholder="아이디" className="int" maxLength="41" onChange={e => {
+                          e.persist();
+                          let val = e.target.value;
+                          this.setState(prevState=>({...prevState,username:val}))
+                        }
+                      } onFocus={this.handleFocus} onBlur={this.handleBlur}/>
                       </span>
                     </div>
                   </div>
@@ -68,7 +73,12 @@ import './LoginForm.css'
                     <div className="input_row">
                       <span className="input_box">
                         <label htmlFor="pw" id="label_pw_area" className="lbl">비밀번호</label>
-                        <input id="loginPw" name="password" type="password" placeholder="비밀번호" maxLength="16" className="int" onChange={e => this.setState(prevState=>({...prevState,password:e.target.value}))} onFocus={this.handleFocus} onBlur={this.handleBlur}/>
+                        <input id="loginPw" name="password" type="password" placeholder="비밀번호" maxLength="16" className="int" onChange={e => {
+                          e.persist();
+                          let val = e.target.value;
+                          this.setState(prevState=>({...prevState,password:val}))
+                          }
+                        } onFocus={this.handleFocus} onBlur={this.handleBlur}/>
                       </span>
                     </div>
                   </div>

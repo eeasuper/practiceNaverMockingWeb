@@ -1,27 +1,25 @@
 package com.nano.naver_m.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Product {
-	private @Id @GeneratedValue Long id;
-	private String productName;
-	private byte[] imageData;
-	private String imageFileName;
-	private int price;
+	private @Id @GeneratedValue @Column(nullable=false) Long id;
+	private @Column(nullable=false) String productName;
+	private @Column(nullable=false) String imagePathInFrontEnd;
+	private @Column(nullable=false) int price;
 	
 	public Product() {
 		
 	}
 	
-	public Product(Long id, String productName, byte[] imageData, String imageFileName,int price) {
+	public Product(String productName, String imagePathInFrontEnd,int price) {
 		super();
-		this.id = id;
 		this.productName = productName;
-		this.imageData = imageData;
-		this.imageFileName = imageFileName;
+		this.imagePathInFrontEnd = imagePathInFrontEnd;
 		this.price = price;
 	}
 
@@ -41,20 +39,12 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public byte[] getImageData() {
-		return imageData;
+	public String getImagePathInFrontEnd() {
+		return imagePathInFrontEnd;
 	}
 
-	public void setImageData(byte[] imageData) {
-		this.imageData = imageData;
-	}
-
-	public String getImageFileName() {
-		return imageFileName;
-	}
-
-	public void setImageFileName(String imageFileName) {
-		this.imageFileName = imageFileName;
+	public void setImagePathInFrontEnd(String imagePathInFrontEnd) {
+		this.imagePathInFrontEnd = imagePathInFrontEnd;
 	}
 
 	public int getPrice() {

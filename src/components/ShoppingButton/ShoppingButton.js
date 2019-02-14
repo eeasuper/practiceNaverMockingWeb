@@ -1,8 +1,8 @@
 import React, { Component,Fragment} from 'react';
 import Flipping from 'flipping'
 import {connect} from "react-redux";
+ import "@reach/dialog/styles.css";
 import {
-  Dialog,
   DialogOverlay,
   DialogContent
 } from "@reach/dialog";
@@ -69,16 +69,15 @@ class ShoppingButton extends Component{
   }
 
   render(){
-    const {cart} = this.props;
-
     const products = Object.keys(this.props.cart).map((val, ind)=>{
       return this.props.cart[val]
     }).map((val, ind)=>{
       //make a REGEX that erases [], ()and skips to the words after them for details.
+      let img_alt = ind + " image for cart menu"
       return(
         <div className="cart_product" key={ind}>
           <div className="cart_p_thumb">
-            <img src={TestPic}/>
+            <img src={TestPic} alt={img_alt}/>
           </div>
           <div className="cart_p_details">
             <p className="cart_p_name">{val.product.details}</p>

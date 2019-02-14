@@ -116,14 +116,14 @@ width: 26px;
 height: 26px;
 }
 
-a.gnb_my, .gnb_icon{
+span.gnb_my, .gnb_icon{
   position: relative;
 }
 .gnb_login_li, .gnb_my_li, .gnb_notice_li, .mail_li, .gnb_service_li{
   float: left;
   overflow: visible;
 }
-.gnb_login_li a, .gnb_my_li a, .gnb_notice_li a, .mail_li a, .gnb_service_li a{
+.gnb_login_li span, .gnb_my_li span, .gnb_notice_li span, .mail_li span, .gnb_service_li span{
   position: relative;
   z-index: 100;
 }

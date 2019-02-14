@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 
 import {doShopButtonAni,deactiShopBut} from '../../store/actions/animation';
 import './ShoppingPageMainContent.css'
-import Product1 from './product_1.png'
-import Product2 from './product_2.png'
-import Product3 from './product_3.PNG';
-import Product4 from './product_4.PNG';
-import Product5 from './product_5.PNG';
-import Product6 from './product_6.PNG';
+import Product1 from '../../resources/products/product_1.png'
+import Product2 from '../../resources/products/product_2.png'
+import Product3 from '../../resources/products/product_3.PNG';
+import Product4 from '../../resources/products/product_4.PNG';
+import Product5 from '../../resources/products/product_5.PNG';
+import Product6 from '../../resources/products/product_6.PNG';
 
 const product_lis = [
       {
@@ -119,7 +119,7 @@ class ShoppingPageMainContent extends Component{
         picture: Product6,
         id: 6
       }
-    ].map((val,ind,arr)=>{
+    ].map((val,ind)=>{
       
       let remainder_left = ind % 5;
       const placement_left = (remainder_left * 180) + (10 * remainder_left)
@@ -132,24 +132,36 @@ class ShoppingPageMainContent extends Component{
         left: placement_left + "px"
       }
 
+      const image_alt = ind + " product image on page"
+
+      function pipePrice(price){
+        let regexCondition = new RegExp('^[0-9]{4}$');
+        if(regexCondition.test(price)){
+          return price.toLocaleString()
+        }else{
+          return price;
+        }
+      }
+      const price = pipePrice(val.price);
+
       return(
         <li className="product_li" style={topLeft} key={ind} >
           <div className="product_div">
             <div className="product_thumbnail">
-              <img src={val.picture} />
+              <img src={val.picture} alt={image_alt} />
             </div>
             <div className="product_details">
               <div className="price_area">
                 <div className="product_price">
                   <span className="product_price_span">
-                  {val.price}
+                  {price}
                   </span>
                   <span>원</span>
                 </div>
               </div>
               <p className="product_description">{val.details}</p>
             </div>
-            <a className="product_anchor" id={val.id} onClick={this.handleClick}></a>
+            <div className="product_anchor" id={val.id} onClick={this.handleClick}></div>
           </div>
         </li>
       )

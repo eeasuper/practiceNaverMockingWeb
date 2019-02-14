@@ -1,9 +1,8 @@
 import React, { Component, Fragment} from 'react';
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 // import { CSSTransition,TransitionGroup} from 'react-transition-group';
-import { CSSTransition,transit } from "react-css-transition";
 import ProfileIcon from './profile_icon.PNG';
 import './LoginBox.css'
 import {logout} from "../../store/actions/auth";
@@ -32,10 +31,7 @@ class LoginBox extends Component{
 
   }
 
-  render(){
-
-    let test = 0;
-    
+  render(){    
     let {currentUser} = this.props;
     return(
       <Fragment>

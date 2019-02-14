@@ -1,9 +1,14 @@
 @font-face {
+  font-family: Dotum;
+  src: url('./fonts/dotum.ttc');
+}
+
+@font-face {
   font-family: UnDotum;
   src: url('./fonts/UnDotum.ttf');
 }
 body,p,button{
-  font-family: UnDotum, Arial, Helvetica, sans-serif;
+  font-family: Dotum,  Arial, Helvetica, sans-serif;
   font-size: 12px;
   margin: 0;
   padding: 0;

@@ -193,35 +193,35 @@ class ShoppingPageBanner extends Component{
       name: '명품',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_luxury.cc7e1888.jpg'
     },{
-      position: '-642px -279px',
+      position: '-642px -322px',
       name: '여성의류',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_women.0a4b469b.jpg'
     },{
-      position: '-388px -206px',
+      position: '-642px -255px',
       name: '남성의류',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_men.114ed4fd.jpg'
     },{
-      position: '-388px -206px',
+      position: '-172px -521px',
       name: '신발',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_shoes.6c724422.jpg'
     },{
-      position: '-388px -206px',
+      position: '-642px -184px',
       name: '패션잡화',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_goods.0c44f0cd.jpg'
     },{
-      position: '-388px -206px',
+      position: '-642px -137px',
       name: '주얼리/시계',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_accessories.6fb816ac.jpg'
     },{
-      position: '-388px -206px',
+      position: '-642px -113px',
       name: '레포츠',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_leports.078683de.jpg'
     },{
-      position: '-388px -206px',
+      position: '-642px -208px',
       name: '언더웨어',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_underwear.0e021663.jpg'
     },{
-      position: '-388px -206px',
+      position: '-642px -279px',
       name: '화장품',
       picture: 'https://ssl.pstatic.net/imgshopping/display/p/static/20190131204615/media/bg_home_cosmetics.a14ffec1.jpg'
     },{
@@ -250,14 +250,14 @@ class ShoppingPageBanner extends Component{
       return(
           <Fragment key={ind}> 
             <div index={ind} className="flick_component" style={(currentDegree === "900%") || (currentDegree === "0%")? transformForLastAndFirstEls:transform} onClick={this.handleBoxClick}>
-              <a index={ind} className="flick_anchor" style={backgroundImage} aria-selected={this.state.selectedBox === ind}>
+              <span index={ind} className="flick_anchor" style={backgroundImage} aria-selected={this.state.selectedBox === ind}>
                 <div index={ind} className="flick_details">
                   <span index={ind} className="flick_floor">
                     <div index={ind} className="floor_before_pseudo_el" style={floor}></div>
                   </span>
                   <p index={ind} className="flick_name">{val.name}</p>
                 </div>
-              </a>
+              </span>
             </div>
           </Fragment>
       )

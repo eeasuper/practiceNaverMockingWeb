@@ -29,6 +29,13 @@ public class OrderDetails {
 		this.product = product;
 		this.quantity = quantity;
 	}
+	
+	public OrderDetails(User user, Product product, int quantity) {
+		super();
+		this.user = user;
+		this.product = product;
+		this.quantity = quantity;
+	}
 
 	public Long getId() {
 		return id;

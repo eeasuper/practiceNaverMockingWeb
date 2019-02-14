@@ -13,7 +13,7 @@ class RightColumn extends Component{
   }
 
   handleClick(e){
-    console.log(this.props.currentUser);
+    // console.log(this.props.currentUser);
   }
   componentDidUpdate(){
   }
