@@ -91,6 +91,7 @@ class RegisterForm extends Component{
   }
 
   handleSubmit(e){
+    //add code to prevent submit when values are invalid.
     e.preventDefault();
     let {username, name, email, password} = this.state;
     let state = {
@@ -99,7 +100,7 @@ class RegisterForm extends Component{
       email: email,
       password: password
     }
-    this.props.onAuth("register", state).then((data)=>{
+    this.props.onAuth("/register", state).then((data)=>{
       this.props.history.push("/");
     }).catch(()=>{
       console.log("error caught in RegisterForm.js");
@@ -137,7 +138,7 @@ class RegisterForm extends Component{
       let timeout = setTimeout(()=>{
         //do api call here.
         //for backend: https://stackoverflow.com/questions/30895286/spring-mvc-how-to-return-simple-string-as-json-in-rest-controller
-        apiCall("get","localhost:8080/users/"+target.value, {}).then((data)=>{
+        apiCall("get","/users/"+target.value, {}).then((data)=>{
           //not sure what data will give.
           console.log("RegisterForm.js validateUesrname:")
           console.log(data);
