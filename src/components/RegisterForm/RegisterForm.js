@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 
 import NaverBigIcon from './NaverBigIcon.PNG';
 import './RegisterForm.css';
+import {apiCall} from '../../services/api';
 
 class RegisterForm extends Component{
   constructor(props){
@@ -26,7 +27,9 @@ class RegisterForm extends Component{
       name: "",
       email: "",
       password1:"",
-      password2:""
+      password2:"",
+      timeoutID: 0,
+      isCheckingUsername: null
     }
     this.path = "register";
     this.handleFocus = this.handleFocus.bind(this);
@@ -36,7 +39,7 @@ class RegisterForm extends Component{
     // this.validatePassword1 = this.validatePassword1.bind(this);
   }
   componentDidUpdate(){
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   handleFocus(e){
@@ -77,6 +80,13 @@ class RegisterForm extends Component{
       this.setState({
         [e.target.name]: e.target.value
       })
+    }
+
+    if(e.target.id === "username"){
+      this.setState(prevState=>({
+        ...prevState,
+        isCheckingUsername: null
+      }))
     }
   }
 
@@ -121,10 +131,51 @@ class RegisterForm extends Component{
 
   validateUsername(target){
     //-----NOTE: do backend connection here.Check if there is already a user with the same username as target.value existing in database.
+    //---Timeout is for debouncing:
+    let valid = false;
+    if(this.state.timeoutID === 0){
+      let timeout = setTimeout(()=>{
+        //do api call here.
+        //for backend: https://stackoverflow.com/questions/30895286/spring-mvc-how-to-return-simple-string-as-json-in-rest-controller
+        apiCall("get","localhost:8080/users/"+target.value, {}).then((data)=>{
+          //not sure what data will give.
+          console.log("RegisterForm.js validateUesrname:")
+          console.log(data);
+          if(data=== [true]){
+            valid = true;
+          }
+          else if(data === [false]){
+            valid = false;
+          }
+        }).catch(()=>{
+          console.log("error caught in RegisterForm.js validateUsername");
+          return;
+        });
+        this.setState(prevState=>({
+          ...prevState,
+          timeoutID: 0,
+          isCheckingUsername: false
+        }))
+      },2000);
+      this.setState(prevState=>({
+        ...prevState,
+        timeoutID: timeout,
+        isCheckingUsername: true
+      }));
+    }else if(this.state.timeoutID){
+      clearTimeout(this.state.timeoutID);
+      //   this.setState(prevState=>({
+      //   ...prevState,
+      //   isCheckingUsername: false
+      // }));
+      return null;
+    }
+    //-----NOTE: check if the below code is working properly...
     let isEmpty = !!(target.value === "");
-    console.log(isEmpty);
-    if(!isEmpty){
-      this.setStateForValidity(target,"",true);
+    if(valid && !isEmpty){
+      this.setStateForValidity(target, "", true)
+    }else if(!valid && !isEmpty){
+      this.setStateForValidity(target,"",false);
     }else{
       this.setStateForValidity(target,"",false);
     }
@@ -167,9 +218,8 @@ class RegisterForm extends Component{
   }
 
   render(){
-    const {email, username, name} = this.state;
-    //why is password missing in c9 example?
-
+    const {email, username, name, password1, password2, timeoutID, isCheckingUsername, dirty, valid} = this.state;
+    //-----NOTE: In product stage:when user clicks register without writing anything, make all columns in state dirty! (handle this in handleSubmit
     return(
       <div>
         <div id="register_header">
@@ -187,11 +237,13 @@ class RegisterForm extends Component{
                   <div className="register_row">
                     <h3 className="register_title"><label>아이디</label></h3>
                     <span className="form_box" id="username_span">
-                      <input className="register_input" type="text" name="username" title="Username" maxLength="20" value={username} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange}/>
+                      <input id="username" className="register_input" type="text" name="username" title="Username" maxLength="20" value={username} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange}/>
                       <span className="step_url">@naver.com</span>
                     </span>
-                    {this.state.dirty.username && !this.state.valid.username && <span id="" className="error_box">필수 정보입니다.</span>}
-                    {this.state.dirty.username && this.state.valid.username && this.state.username !== "" && <span className="error_box green">멋진 아이디네요!</span>}
+                    {dirty.username && !valid.username && username === "" && <span id="" className="error_box">필수 정보입니다.</span>}
+                    {dirty.username && valid.username && username !== ""  && timeoutID === 0 && <span className="error_box green">멋진 아이디네요!</span>}
+                    {dirty.username && !valid.username && username !== "" && isCheckingUsername === true && <span id="" className="error_box green">확인중...</span>}
+                    {dirty.username && !valid.username && username !== "" && timeoutID === 0 && isCheckingUsername === false && <span id="" className="error_box">이미 사용중인 아이디입니다.</span>}
                   </div>
                   <div className="register_row">
                     <h3 className="register_title"><label>비밀번호</label></h3>
@@ -199,33 +251,33 @@ class RegisterForm extends Component{
                       <input id="password1" className="register_input" type="password" name="password1" title="Input password" maxLength="20" onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange}/>
                       <span className="lock_icon"><span></span></span>
                     </span>
-                    {this.state.dirty.password1 && !this.state.valid.password1 && this.state.password === "" && <span id="" className="error_box">필수 정보입니다.</span>}
-                    {this.state.dirty.password1 && !this.state.valid.password1 && this.state.password !== "" && <span className="error_box">8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</span>}
+                    {dirty.password1 && !valid.password1 && password1 === "" && <span id="" className="error_box">필수 정보입니다.</span>}
+                    {dirty.password1 && !valid.password1 && password1 !== "" && <span className="error_box">8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</span>}
                     <h3 className="register_title"><label>비밀번호 재확인</label></h3>
                     <span className="form_box" id="pswd2_span">
                       <input id="password2" className="register_input" type="password" name="password2" title="Confirm password" maxLength="20" onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange}/>
                       <span className="lock_icon"><span></span></span>
                     </span>
-                    {this.state.dirty.password2 && !this.state.valid.password2 && <span id="" className="error_box">필수 정보입니다.</span>}
+                    {dirty.password2 && !valid.password2 && <span id="" className="error_box">필수 정보입니다.</span>}
                   </div>
                   <div className="register_row">
                     <h3 className="register_title"><label>이름</label></h3>
                     <span className="form_box" id="name_span">
                       <input className="register_input" type="text" name="name" title="Name" maxLength="20" placeholder="Full Name" value={name} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange}/>
                     </span>
-                    {this.state.dirty.name && !this.state.valid.name && this.state.name === "" && <span id="" className="error_box">필수 정보입니다.</span>}
+                    {dirty.name && !valid.name && name === "" && <span id="" className="error_box">필수 정보입니다.</span>}
                   </div>
                   <div className="register_row">
                     <h3 className="register_title"><label>본인 확인 이메일</label></h3>
                     <span className="form_box" id="email_span">
                       <input className="register_input" type="text" name="email" title="Email" maxLength="20" placeholder="Email" value={email} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange}/>
                     </span>
-                    {this.state.dirty.email && !this.state.valid.email && this.state.email === "" && <span id="" className="error_box">필수 정보입니다.</span>}
-                    {this.state.dirty.email && !this.state.valid.email && this.state.email !== "" && <span id="" className="error_box">이메일 주소를 다시 확인해주세요..</span>}
+                    {dirty.email && !valid.email && email === "" && <span id="" className="error_box">필수 정보입니다.</span>}
+                    {dirty.email && !valid.email && email !== "" && <span id="" className="error_box">이메일 주소를 다시 확인해주세요..</span>}
                   </div>
                 </div>
                 <div className="btn_area">
-                  <button id="register_button" className="btn_type btn_primary" type="submit"><span>Sign Up</span></button>
+                  <button id="register_button" className="btn_type btn_primary" type="submit"><span>회원가입</span></button>
                 </div>
               </div>
             </div>

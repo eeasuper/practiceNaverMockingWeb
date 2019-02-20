@@ -1,0 +1,20 @@
+checklist:
+
+1. RegisterForm.js: users/{username} CHECK (RECHECK WHEN UPLOADED ONTO SERVER - NOT SURE IF DATA SENT FROM RESPONSE WILL BE STRING OR ARRAY) (change users/{username} to /users?=username:... ?)
+responds with either [true] or [false].
+
+2. RegisterForm.js /register CHECK
+responds with a User.class.
+
+3. LoginForm.js /login CHECK
+curl to test with (turn off access to signInService in controller): 
+curl -v -X GET localhost:8080/login -H "Accept: application/json" --header "Content-Type: application/json" --data "{\"username\":\"username\",\"password\":\"password\",\"stayLoggedIn\":\"true\"}"
+responds with a User.class.
+
+4. ShoppingPageMainContent.js /users/{id}/cart && cart.js -actions (add)CHECK (EDIT QUANTITY FEATURE IN BACKEND AND FRONT END)
+
+5. ShoppingButton.js && cart.js -actions (fetch) /users/${user_id}/cart CHECK
+curl -v -X GET localhost:8080/users/1/cart - H "Accept: application/json"
+
+6. ShoppingButton.js && cart.js -actions (remove) /users/{user_id}/cart/{product_id} CHECK
+curl -v -X DELETE localhost:8080/users/1/cart/2 

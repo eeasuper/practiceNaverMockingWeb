@@ -35,9 +35,9 @@ class RightColumn extends Component{
                 <div id="login_links">
                   <span id="login_links_find">
                     <Link id="login_link_register" to="/signup">회원가입</Link>
-                    <Link className="login_find_text" to="/signin">아이디</Link>
+                    <Link className="login_find_text" to="/signup">아이디</Link>
                     ·
-                    <Link className="login_find_text" to="/">비밀번호 찾기</Link>
+                    <Link className="login_find_text" to="/signup">비밀번호 찾기</Link>
                   </span>
                 </div>
               </div>

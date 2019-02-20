@@ -14,8 +14,8 @@ class ShoppingPage extends Component{
     return(
       <div>
         <ShoppingHeader currentUser = {this.props.currentUser}/>
-        <ShoppingPageContent onAdd={this.props.doAdd}/>
-        <ShoppingButton onRemove={this.props.doRemove} onFetch={this.props.doFetch} onAdd={this.props.doAdd} cart={this.props.cart}/>
+        <ShoppingPageContent onAdd={this.props.doAdd} currentUser = {this.props.currentUser}/>
+        <ShoppingButton onRemove={this.props.doRemove} onFetch={this.props.doFetch} onAdd={this.props.doAdd} cart={this.props.cart} currentUser = {this.props.currentUser}/>
       </div>
     )
   }
@@ -31,7 +31,7 @@ function mapDispatchToProps(dispatch){
   return{
     doRemove: (user_id,product_id)=> dispatch(removeFromCart(user_id,product_id)),
     doFetch: ()=> dispatch(fetchCart()),
-    doAdd: (product)=> dispatch(addToCart(product))
+    doAdd: (order)=> dispatch(addToCart(order))
   };
 }
 

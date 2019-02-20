@@ -9,7 +9,7 @@ import {
 
 import './ShoppingButton.css'
 import TestPic from './product_1.png';
-
+import {loadCart} from '../../store/actions/cart';
 
 
 class ShoppingButton extends Component{
@@ -24,23 +24,60 @@ class ShoppingButton extends Component{
     this.handleOkayClick = this.handleOkayClick.bind(this);
     this.confirmButtonRef = React.createRef();
     this.buy_button = React.createRef();
+    this.fetchCart = this.fetchCart.bind(this);
   }
 
   componentDidMount(){
     this.flipping = new Flipping({
     })
-
     this.flipping.read();
+
+    if(this.props.currentUser.user.id){
+      this.fetchCart();
+    }
+  }
+
+  fetchCart(){
+    //do Fetch then dispatch Load Cart with the products received from backend as action payload.
+    this.props.onFetch(this.props.currentUser.user.id)
+    .then((data)=>{
+      /*
+        response format (could fix this later if possible in backend to make it "cleaner":
+        {
+          "_embedded":{
+            "orderDetailsList":[{
+               "id": 8 
+                ... 
+            },{...}]
+          }
+        }
+      */
+      let preloadedCart = [];
+      data._embedded.orderDetailsList.forEach((val, ind)=>{
+        //$$_hibernate_interceptor & hibernateLazyInitializer is deleted because it is unnecessary info sent from backend.(should fix this later).
+        let product = val.product.slice(0);
+        if(product.$$_hibernate_interceptor){
+          delete product.$$_hibernate_interceptor;
+          delete product.hibernateLazyInitializer;
+        }
+
+        preloadedCart.add(product);
+      });
+      this.props.loadCart(preloadedCart);
+    }).catch((err)=>{
+      console.log("error in ShoppingButton.js");
+      console.log(err);
+    })
   }
 
   componentWillUpdate(){
+    //componentWillUpdate has changed to UNSAFE in new versions of React. Some implementation will be required here in future.
    this.flipping.read();
   }
 
   componentDidUpdate(){
     this.flipping.flip();
-    //if redux state's button click is true, add an attribute to button to make it animate...? Through refs?
-    //Then use timeout to dispatch 
+
     if(this.props.buttonActi){
       this.buy_button.current.setAttribute("data-buttonActi",true)
     }else{
@@ -49,9 +86,9 @@ class ShoppingButton extends Component{
   }
 
   handleClick(e){
-    // console.log(e.target);
-    //hard-coded code below:
-    // this.props.onFetch("TEST_ID");
+    if(this.props.currentUser.user.id){
+      this.fetchCart();
+    }
   }
   handleCloseClick(e){
     // console.log(e.target.id);
@@ -62,7 +99,8 @@ class ShoppingButton extends Component{
     }));
   }
   handleOkayClick(e){
-    this.props.onRemove("TEST_ID", this.state.itemToErase);
+    //if user is not logged in, this method will not work(maybe).
+    this.props.onRemove(this.props.currentUser.user.id, this.state.itemToErase);
     this.setState(prevState=>({
       ...prevState, itemToErase: null
     }))
@@ -104,7 +142,13 @@ class ShoppingButton extends Component{
           <i></i>
         </button>
         <div className="cart_menu">
-          {products}
+          <div className= "cart_menu_sub">
+            {products.length < 1 &&
+            <span>바구니가 비어있습니다. 상품을 선택해주세요.</span>
+            }
+            {products}
+          </div>
+
         </div>
         <DialogOverlay  isOpen={this.state.showDialog}
             onDismiss={()=> {
@@ -119,6 +163,7 @@ class ShoppingButton extends Component{
               <p className="dialog_p">선택한 상품을 바구니에서 지우시겠습니까?</p>
               <span>
                 <button onClick={()=> {
+                  this.props.onRemove(this.props.currentUser.user.id, this.state.itemToErase);
                   this.setState(prevState => ({showDialog: false}))
                   this.handleOkayClick();
                 }} className="dialog_yes dialog_button">네</button>
@@ -135,11 +180,17 @@ class ShoppingButton extends Component{
     )
   }
 }
-//https://stackoverflow.com/questions/13630229/can-i-have-an-onclick-effect-in-css
+
 function mapStateToProps(state){
   return{
     buttonActi: state.animation.shopping_button_acti
   }
 }
 
-export default connect(mapStateToProps)(ShoppingButton);
+function mapDispatchToProps(dispatch){
+  return{
+    loadCart: (products) => dispatch(loadCart(products))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ShoppingButton);

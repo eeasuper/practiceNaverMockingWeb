@@ -3,50 +3,8 @@ import {connect} from "react-redux";
 
 import {doShopButtonAni,deactiShopBut} from '../../store/actions/animation';
 import './ShoppingPageMainContent.css'
-import Product1 from '../../resources/products/product_1.png'
-import Product2 from '../../resources/products/product_2.png'
-import Product3 from '../../resources/products/product_3.PNG';
-import Product4 from '../../resources/products/product_4.PNG';
-import Product5 from '../../resources/products/product_5.PNG';
-import Product6 from '../../resources/products/product_6.PNG';
 
-const product_lis = [
-      {
-        price: "20,000",
-        details: "[대구백화점 1관] [시에로코스메틱]유니 어 데이",
-        picture: Product1,
-        id: 1
-      },
-      {
-        price: "22,000",
-        details: "[PUPA] 멀티플레이 트리플 퍼포즈 아이펜슬 5종",
-        picture: Product2,
-        id: 2
-      },{
-        price: "69,700",
-        details:"[시세이도] 맨 토탈 리바이탈라이저 라이트 플루이드",
-        picture: Product3,
-        id: 3
-      },
-      {
-        price: "48,770",
-        details: "[비디비치](신세계강남점)[2월] 퍼펙트 브이 핏 쿠션 (정품 픽서 증정)",
-        picture: Product4,
-        id: 4
-      },
-      {
-        price: "46,750",
-        details: "[시세이도] 트렌스루센트 프레스드 파우더",
-        picture: Product5,
-        id: 5
-      },
-      {
-        price:"25,500",
-        details: "[시세이도] 맨 클렌징 폼",
-        picture: Product6,
-        id: 6
-      }
-    ];
+import {productArray} from '../../resources/products/Products';
 
 class ShoppingPageMainContent extends Component{
   constructor(props){
@@ -58,10 +16,17 @@ class ShoppingPageMainContent extends Component{
   }
 
   handleClick(e){
-    let product = product_lis.filter((val, ind)=>{
+    let product = productArray.filter((val, ind)=>{
       return val.id === parseInt(e.target.id);
-    });
-    this.props.onAdd(product[0]);
+    })[0].id;
+    const user = this.props.currentUser.user.id;
+    let data = {
+      product,
+      user,
+      quantity: 1
+    }
+    console.log(data);
+    this.props.onAdd(data);
     this.props.onShopButAni();
     if(this.state.timeoutID === 0){
       let timeout = setTimeout(()=>{
@@ -83,43 +48,7 @@ class ShoppingPageMainContent extends Component{
   }
 
   render(){
-    const product_lis = [
-      {
-        price: "20,000",
-        details: "[대구백화점 1관] [시에로코스메틱]유니 어 데이",
-        picture: Product1,
-        id: 1
-      },
-      {
-        price: "22,000",
-        details: "[PUPA] 멀티플레이 트리플 퍼포즈 아이펜슬 5종",
-        picture: Product2,
-        id: 2
-      },{
-        price: "69,700",
-        details:"[시세이도] 맨 토탈 리바이탈라이저 라이트 플루이드",
-        picture: Product3,
-        id: 3
-      },
-      {
-        price: "48,770",
-        details: "[비디비치](신세계강남점)[2월] 퍼펙트 브이 핏 쿠션 (정품 픽서 증정)",
-        picture: Product4,
-        id: 4
-      },
-      {
-        price: "46,750",
-        details: "[시세이도] 트렌스루센트 프레스드 파우더",
-        picture: Product5,
-        id: 5
-      },
-      {
-        price:"25,500",
-        details: "[시세이도] 맨 클렌징 폼",
-        picture: Product6,
-        id: 6
-      }
-    ].map((val,ind)=>{
+    const product_lis = productArray.slice(0).map((val,ind)=>{
       
       let remainder_left = ind % 5;
       const placement_left = (remainder_left * 180) + (10 * remainder_left)
@@ -135,6 +64,7 @@ class ShoppingPageMainContent extends Component{
       const image_alt = ind + " product image on page"
 
       function pipePrice(price){
+        //This regex is not necessary.
         let regexCondition = new RegExp('^[0-9]{4}$');
         if(regexCondition.test(price)){
           return price.toLocaleString()

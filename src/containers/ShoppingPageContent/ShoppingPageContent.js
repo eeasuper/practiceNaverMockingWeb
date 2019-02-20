@@ -34,7 +34,7 @@ function ShoppingPageContent(props){
         </ul>
       </div>
       <ShoppingPageBanner />
-      <ShoppingPageMainContent onAdd={props.onAdd}/>
+      <ShoppingPageMainContent onAdd={props.onAdd} currentUser = {props.currentUser}/>
     </div>
   )
 

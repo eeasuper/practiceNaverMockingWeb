@@ -16,6 +16,7 @@ export const addCart = product => ({
   product
 })
 
+
 export const removeFromCart = (user_id, product_id) => {
   return dispatch => {
     return apiCall("delete", `/users/${user_id}/cart/${product_id}`)
@@ -27,13 +28,13 @@ export const removeFromCart = (user_id, product_id) => {
   }
 }
 //erase param: products when connecting to backend...
-export const fetchCart = (user_id, products) => {
-  console.log("FROM cart.js in actions:")
-  console.log(user_id)
+// export const fetchCart = (user_id, products) => {
+  export const fetchCart = (user_id) => {
+  console.log("FROM cart.js fetchCart()")
   return dispatch => {
     return apiCall("get", `/users/${user_id}/cart`)
     .then(res => {
-      dispatch(loadCart(products));
+      dispatch(loadCart(res));
     })
     .catch(err => {
       console.log(err.message);
@@ -42,10 +43,10 @@ export const fetchCart = (user_id, products) => {
   };
 }
 
-export const addToCart = product => (dispatch, getState) => {
+export const addToCart = order => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
-  return apiCall("post", `/users/${id}/cart`, {product})
+  return apiCall("post", `/users/${id}/cart`, {order})
   .then(res=>{
     dispatch(addCart(res));
   })

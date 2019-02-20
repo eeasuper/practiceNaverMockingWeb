@@ -2,15 +2,11 @@ import React, { Component, Fragment} from 'react';
 // import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
-// import { CSSTransition,TransitionGroup} from 'react-transition-group';
 import ProfileIcon from './profile_icon.PNG';
 import './LoginBox.css'
 import {logout} from "../../store/actions/auth";
 import UserTabs from '../UserTabs/UserTabs';
 
-//CSS-transition doc
-//https://wikiwi.github.io/react-css-transition/
-//Next Time, NEVER use CSS-transitions!
 
 class LoginBox extends Component{
   constructor(props){
