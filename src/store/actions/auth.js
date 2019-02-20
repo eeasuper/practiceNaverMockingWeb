@@ -23,7 +23,7 @@ export function logout(){
 export function authUser(type, userData){  
   return (dispatch) => {
     return new Promise((resolve, reject)=>{
-      return apiCall("post", `/${type}`, userData)
+      return apiCall("post", "/"+`${type}`, userData)
       .then((data) => {
       // .then(({token,...user}) => {
         let response = {
