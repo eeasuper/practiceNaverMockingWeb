@@ -53,7 +53,7 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
   return{
-    doAuth:  (type,state)=> dispatch(authUser(type,state))
+    doAuth:  (type,state, method)=> dispatch(authUser(type,state, method))
   };
 }
 

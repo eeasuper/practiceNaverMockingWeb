@@ -20,10 +20,10 @@ export function logout(){
   }
 }
 
-export function authUser(type, userData){  
+export function authUser(type, userData, method){  
   return (dispatch) => {
     return new Promise((resolve, reject)=>{
-      return apiCall("post", "/"+`${type}`, userData)
+      return apiCall(method, "/"+`${type}`, userData)
       .then((data) => {
       // .then(({token,...user}) => {
         let response = {

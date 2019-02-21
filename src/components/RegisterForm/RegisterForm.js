@@ -100,7 +100,7 @@ class RegisterForm extends Component{
       email: email,
       password: password
     }
-    this.props.onAuth("register", state).then((data)=>{
+    this.props.onAuth("register", state, "post").then((data)=>{
       this.props.history.push("/");
     }).catch(()=>{
       console.log("error caught in RegisterForm.js");
