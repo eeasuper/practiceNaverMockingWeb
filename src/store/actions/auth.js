@@ -19,6 +19,8 @@ export function logout(){
     dispatch(setCurrentUser({}));
   }
 }
+//do I have to add content-type? and Accept?
+
 
 export function authUser(type, userData, method){  
   return (dispatch) => {

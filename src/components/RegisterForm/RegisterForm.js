@@ -95,10 +95,10 @@ class RegisterForm extends Component{
     e.preventDefault();
     let {username, name, email, password} = this.state;
     let state = {
-      username: username,
-      name: name,
-      email: email,
-      password: password
+      "username": username,
+      "name": name,
+      "email": email,
+      "password": password
     }
     this.props.onAuth("register", state, "post").then((data)=>{
       this.props.history.push("/");
