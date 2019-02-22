@@ -11,25 +11,23 @@ export function setTokenHeader(token){
 
 const backendDomain = "https://naver-mock-app-backend.herokuapp.com";
 
-let config = {
-  headers:{
-    "Content-Type":"application/json",
-    "Accept":"application/json"
-  }
-}
 
+     // return axios[method.toLowerCase()](backendDomain+path, data).then(res=> {
 export function apiCall(method, path, data){
- 
+  let url = backendDomain + path
+  let config = {
+    method: [method],
+    url: [url],
+    data : [data],
+    headers:{
+      "Content-Type":"application/json",
+      "Accept":"application/json"
+    }
+  }
    return new Promise((resolve, reject)=>{
     console.log("attempting to send data:");
     console.log(data)
-    let url = backendDomain + path
-     // return axios[method.toLowerCase()](backendDomain+path, data).then(res=> {
-     return axios({
-       method: [method],
-       url: [url],
-       data : [data]
-     }).then(res=> {
+     return axios(config).then(res=> {
       console.log("successful apiCall");
       console.log(res);
       return resolve(res.data) //in a successful request we always get back a subobject call data.
