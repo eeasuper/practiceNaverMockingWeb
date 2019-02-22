@@ -29,7 +29,7 @@ import './LoginForm.css'
       "password": this.state.password,
       "stayLoggedIn": this.state.stayLoggedIn.toString()
     }
-    this.props.onAuth("login", state, "get").then((data)=>{
+    this.props.onAuth("login", state, "post").then((data)=>{
       this.props.history.push("/")
     }).catch(()=>{
       console.log("error caught in LoginForm.js")
