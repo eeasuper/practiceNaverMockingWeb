@@ -27,7 +27,7 @@ import './LoginForm.css'
     let state = {
       "username": this.state.username,
       "password": this.state.password,
-      "stayLoggedIn": this.state.stayLoggedIn
+      "stayLoggedIn": this.state.stayLoggedIn.toString()
     }
     this.props.onAuth("login", state, "get").then((data)=>{
       this.props.history.push("/")

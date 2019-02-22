@@ -39,6 +39,7 @@ export function apiCall(method, path, data){
       console.log("caught in apiCall")
       console.log(err);
       return reject(err.response);
+      //Do front end configurations for when 404 is sent.(user not found)
     })
    
   })
