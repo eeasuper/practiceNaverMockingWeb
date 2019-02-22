@@ -14,12 +14,13 @@ const backendDomain = "https://naver-mock-app-backend.herokuapp.com";
 
      // return axios[method.toLowerCase()](backendDomain+path, data).then(res=> {
 export function apiCall(method, path, data){
-  let url = backendDomain + path
+  let url = backendDomain + path;
   console.log("method:")
   console.log(method);
   console.log(typeof method);
-  let config = {
-    method: [method],
+  let reMethod = method.toString();
+  const config = {
+    method: [reMethod],
     url: [url],
     data : [data],
     headers:{
