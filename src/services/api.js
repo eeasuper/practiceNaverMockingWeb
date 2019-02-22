@@ -17,6 +17,7 @@ export function apiCall(method, path, data){
   let url = backendDomain + path
   console.log("method:")
   console.log(method);
+  console.log(typeof method);
   let config = {
     method: [method],
     url: [url],
