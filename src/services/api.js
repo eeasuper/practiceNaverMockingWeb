@@ -11,7 +11,6 @@ export function setTokenHeader(token){
 
 const backendDomain = "https://naver-mock-app-backend.herokuapp.com";
 
-
      // return axios[method.toLowerCase()](backendDomain+path, data).then(res=> {
 export function apiCall(method, path, data){
   let url = backendDomain + path;
@@ -20,9 +19,9 @@ export function apiCall(method, path, data){
   console.log(typeof method);
   let reMethod = method.toString();
   const config = {
-    method: [reMethod],
-    url: [url],
-    data : [data],
+    method: reMethod,
+    url: url,
+    data : data,
     headers:{
       "Content-Type":"application/json",
       "Accept":"application/json"
