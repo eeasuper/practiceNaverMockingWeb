@@ -31,12 +31,10 @@ class RegisterForm extends Component{
       timeoutID: 0,
       isCheckingUsername: null
     }
-    this.path = "register";
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.validatePassword1 = this.validatePassword1.bind(this);
   }
   componentDidUpdate(){
     // console.log(this.state);
@@ -91,21 +89,37 @@ class RegisterForm extends Component{
   }
 
   handleSubmit(e){
-    //add code to prevent submit when values are invalid.
     e.preventDefault();
-    let {username, name, email, password} = this.state;
+    let {username, name, email, password1, valid} = this.state;
     let state = {
       "username": username,
       "name": name,
       "email": email,
-      "password": password
+      "password": password1
     }
-    this.props.onAuth("register", state, "post").then((data)=>{
-      this.props.history.push("/");
-    }).catch(()=>{
-      console.log("error caught in RegisterForm.js");
-      return;
+    let isNotValid = Object.values(valid).some((val)=>{
+      return !val;
     });
+
+    if(!isNotValid){
+      this.props.onAuth("register", state, "post").then((data)=>{
+        this.props.history.push("/");
+      }).catch(()=>{
+        console.log("error caught in RegisterForm.js");
+        return;
+      });
+    }else{
+      this.setState(prevState =>({
+        ...prevState,
+        dirty:{
+          username:true,
+          password1:true,
+          password2:true,
+          name:true,
+          email:true
+        }
+      }))
+    }
   }
 
   setStateForValidity(target, name="",validity=false){
@@ -145,13 +159,11 @@ class RegisterForm extends Component{
         }
         apiCallWithParams(options).then((data)=>{
           console.log("RegisterForm.js validateUsername:")
-          console.log(data);
           if(data.status === 200){
             valid = false;
           }
         }).catch((err)=>{
-          console.log("error caught in RegisterForm.js validateUsername");
-          console.log(err.status);
+          console.log("validateUsername returned "+err.status+". If 404, username is available for use.");
           if(err.status === 404){
             valid = true;
           }
@@ -169,10 +181,6 @@ class RegisterForm extends Component{
       }));
     }else if(this.state.timeoutID){
       clearTimeout(this.state.timeoutID);
-      //   this.setState(prevState=>({
-      //   ...prevState,
-      //   isCheckingUsername: false
-      // }));
       return null;
     }
 
@@ -189,6 +197,8 @@ class RegisterForm extends Component{
     }else{
       this.setStateForValidity(target,"",false);
     }
+    //For test:
+    // this.setStateForValidity(target, "", true)
   }
 
   validateEmail(target){
@@ -205,13 +215,10 @@ class RegisterForm extends Component{
     //-----NOTE:improve regex when I have time.
     let canUsePassRegex = /[a-zA-Z0-9\W]{8,16}/g;
     let isMatch = target.value.match(canUsePassRegex);
-    console.log(isMatch);
     if(isMatch){
-      console.log("password matched")
       this.setStateForValidity(target,"password1",true);
       return true;
     }else{
-      console.log("password not matched")
       this.setStateForValidity(target,"password1",false);
       return false;
     }
@@ -219,7 +226,6 @@ class RegisterForm extends Component{
 
   validatePassword2(target){
     let isMatch = !!(target.value === this.state.password1);
-    console.log(isMatch);
     if(isMatch){
       this.setStateForValidity(target, "password2", true)
     }else{
@@ -229,7 +235,7 @@ class RegisterForm extends Component{
 
   render(){
     const {email, username, name, password1, password2, timeoutID, isCheckingUsername, dirty, valid} = this.state;
-    //-----NOTE: In product stage:when user clicks register without writing anything, make all columns in state dirty! (handle this in handleSubmit
+    
     return(
       <div>
         <div id="register_header">

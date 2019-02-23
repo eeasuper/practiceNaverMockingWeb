@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-// import {connect} from "react-redux";
-// import {authUser} from "../../store/actions/auth";
 import './LoginForm.css'
 
-// function LoginForm(props){
   class LoginForm extends Component{
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [stayLoggedIn, setStayLoggedIn] = useState(false);
-
-  // function handleSubmit(e){
     constructor(props){
       super(props);
       this.state={
