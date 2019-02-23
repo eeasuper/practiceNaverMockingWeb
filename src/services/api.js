@@ -106,9 +106,11 @@ export function apiCallWithParams(config){
   console.log("attempting to send configs:")
   console.log(config);
   return new Promise((resolve, reject)=>{
+      // return resolve([false]);
     return axios(config).then(res=>{
       console.log("successful apiCallWithParams");
       console.log(res);
+      console.log(res.data);
       return resolve(res.data)
     }).catch(err => {
       console.log("caught in apiCallWithParams")

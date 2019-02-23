@@ -167,6 +167,7 @@ class RegisterForm extends Component{
               console.log("Regex test has failed.")
               valid = false;
             }
+            console.log("username validation has succeeded");
             valid = true;
           }
         }).catch((err)=>{

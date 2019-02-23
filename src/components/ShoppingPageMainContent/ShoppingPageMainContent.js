@@ -19,7 +19,7 @@ class ShoppingPageMainContent extends Component{
     let product = productArray.filter((val, ind)=>{
       return val.id === parseInt(e.target.id);
     })[0].id;
-    const user = this.props.currentUser.user.id;
+    const user = this.props.currentUser.user;
     let data = {
       product,
       user,
