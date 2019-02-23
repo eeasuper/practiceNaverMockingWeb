@@ -136,7 +136,7 @@ class RegisterForm extends Component{
     let valid = false;
     if(this.state.timeoutID === 0){
       let timeout = setTimeout(()=>{
-        const params = new URLSearchParams();
+        let params = new URLSearchParams();
         params.append('username', target.value);
         const options = {
           params,
