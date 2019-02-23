@@ -146,8 +146,8 @@ class RegisterForm extends Component{
         apiCallWithParams(options).then((data)=>{
           console.log("RegisterForm.js validateUsername:")
           console.log(data);
-          if(data=== [true]){
-            valid = true;
+          if(data.status === 200){
+            valid = false;
           }
         }).catch((err)=>{
           console.log("error caught in RegisterForm.js validateUsername");
@@ -155,7 +155,7 @@ class RegisterForm extends Component{
           console.log(err.status);
           console.log(err.response);
           if(err.status === 404){
-            valid = false;
+            valid = true;
           }
           return;
         });
