@@ -151,13 +151,10 @@ class RegisterForm extends Component{
           }
         }).catch((err)=>{
           console.log("error caught in RegisterForm.js validateUsername");
-          console.log(err);
           console.log(err.status);
-          console.log(err.response);
           if(err.status === 404){
             valid = true;
           }
-          return;
         });
         this.setState(prevState=>({
           ...prevState,
@@ -178,7 +175,12 @@ class RegisterForm extends Component{
       // }));
       return null;
     }
-    //-----NOTE: check if the below code is working properly...
+
+    const userRegex = /^(?=.{6,25}$)[A-Za-z0-9가-힣]+(?:[_-][A-Za-z0-9가-힣]+)*$/
+    if(!userRegex.test(target.value)){
+      valid = false;
+    }
+
     let isEmpty = !!(target.value === "");
     if(valid && !isEmpty){
       this.setStateForValidity(target, "", true)
