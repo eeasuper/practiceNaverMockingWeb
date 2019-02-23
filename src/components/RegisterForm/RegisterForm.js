@@ -131,13 +131,10 @@ class RegisterForm extends Component{
   }
 
   validateUsername(target){
-    //-----NOTE: do backend connection here.Check if there is already a user with the same username as target.value existing in database.
     //---Timeout is for debouncing:
     let valid = false;
     if(this.state.timeoutID === 0){
       let timeout = setTimeout(()=>{
-        // let params = new URLSearchParams();
-        // params.append('username', target.value);
         let username = target.value;
         const options = {
           params:{
@@ -146,20 +143,20 @@ class RegisterForm extends Component{
           method: "post",
           url: "/users/validate"
         }
-        //do api call here.
-        //for backend: https://stackoverflow.com/questions/30895286/spring-mvc-how-to-return-simple-string-as-json-in-rest-controller
         apiCallWithParams(options).then((data)=>{
-          //not sure what data will give.
           console.log("RegisterForm.js validateUsername:")
           console.log(data);
           if(data=== [true]){
             valid = true;
           }
-          else if(data === [false]){
+        }).catch((err)=>{
+          console.log("error caught in RegisterForm.js validateUsername");
+          console.log(err);
+          console.log(err.status);
+          console.log(err.response);
+          if(err.status === 404){
             valid = false;
           }
-        }).catch(()=>{
-          console.log("error caught in RegisterForm.js validateUsername");
           return;
         });
         this.setState(prevState=>({
