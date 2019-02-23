@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import NaverBigIcon from './NaverBigIcon.PNG';
 import './RegisterForm.css';
-import {apiCall} from '../../services/api';
+import {apiCallWithParams} from '../../services/api';
 
 class RegisterForm extends Component{
   constructor(props){
@@ -136,17 +136,19 @@ class RegisterForm extends Component{
     let valid = false;
     if(this.state.timeoutID === 0){
       let timeout = setTimeout(()=>{
-        let params = new URLSearchParams();
-        params.append('username', target.value);
+        // let params = new URLSearchParams();
+        // params.append('username', target.value);
+        let username = target.value;
         const options = {
-          params,
+          params:{
+            username
+          },
           method: "post",
           url: "/users/validate"
         }
         //do api call here.
         //for backend: https://stackoverflow.com/questions/30895286/spring-mvc-how-to-return-simple-string-as-json-in-rest-controller
-        console.log("trying to send: "+target.value);
-        apiCall(options).then((data)=>{
+        apiCallWithParams(options).then((data)=>{
           //not sure what data will give.
           console.log("RegisterForm.js validateUsername:")
           console.log(data);

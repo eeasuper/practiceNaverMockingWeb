@@ -44,7 +44,6 @@ export function apiCall(method, path, data){
    
   })
 
-
   // return new Promise((resolve, reject)=>{
   //   let data1;
   //   if(path === "localhost:8080/register" || path === "localhost:8080/login"){
@@ -99,4 +98,22 @@ export function apiCall(method, path, data){
   //   })
   //  }
   // })
+}
+
+export function apiCallWithParams(config){
+  let url = backendDomain + config.url;
+  config.url = url;
+  console.log("attempting to send configs:")
+  console.log(config);
+  return new Promise((resolve, reject)=>{
+    return axios(config).then(res=>{
+      console.log("successful apiCallWithParams");
+      console.log(res);
+      return resolve(res.data)
+    }).catch(err => {
+      console.log("caught in apiCallWithParams")
+      console.log(err);
+      return reject(err.response);
+    })
+  })
 }
