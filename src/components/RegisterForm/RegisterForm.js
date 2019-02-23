@@ -159,9 +159,9 @@ class RegisterForm extends Component{
         }
         apiCallWithParams(options).then((data)=>{
           console.log("RegisterForm.js validateUsername:")
-          if(data === [true]){
+          if(data[0]){
             valid = false;
-          }else if(data === [false]){
+          }else if(!data[0]){
             const userRegex = /^(?=.{6,25}$)[A-Za-z0-9가-힣]+(?:[_-][A-Za-z0-9가-힣]+)*$/
             if(!userRegex.test(target.value)){
               console.log("Regex test has failed.")
