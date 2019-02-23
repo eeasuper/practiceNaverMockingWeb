@@ -159,14 +159,18 @@ class RegisterForm extends Component{
         }
         apiCallWithParams(options).then((data)=>{
           console.log("RegisterForm.js validateUsername:")
-          if(data.status === 200){
+          if(data === [true]){
             valid = false;
-          }
-        }).catch((err)=>{
-          console.log("validateUsername returned "+err.status+". If 404, username is available for use.");
-          if(err.status === 404){
+          }else if(data === [false]){
+            const userRegex = /^(?=.{6,25}$)[A-Za-z0-9가-힣]+(?:[_-][A-Za-z0-9가-힣]+)*$/
+            if(!userRegex.test(target.value)){
+              console.log("Regex test has failed.")
+              valid = false;
+            }
             valid = true;
           }
+        }).catch((err)=>{
+          console.log("validateUsername returned "+err.status);
         });
         this.setState(prevState=>({
           ...prevState,
@@ -182,11 +186,6 @@ class RegisterForm extends Component{
     }else if(this.state.timeoutID){
       clearTimeout(this.state.timeoutID);
       return null;
-    }
-
-    const userRegex = /^(?=.{6,25}$)[A-Za-z0-9가-힣]+(?:[_-][A-Za-z0-9가-힣]+)*$/
-    if(!userRegex.test(target.value)){
-      valid = false;
     }
 
     let isEmpty = !!(target.value === "");
@@ -235,7 +234,7 @@ class RegisterForm extends Component{
 
   render(){
     const {email, username, name, password1, password2, timeoutID, isCheckingUsername, dirty, valid} = this.state;
-    
+
     return(
       <div>
         <div id="register_header">
