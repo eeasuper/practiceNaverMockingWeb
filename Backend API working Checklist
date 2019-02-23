@@ -8,7 +8,7 @@ responds with a User.class.
 
 3. LoginForm.js /login CHECK
 curl to test with (turn off access to signInService in controller): 
-curl -v -X GET localhost:8080/login -H "Accept: application/json" --header "Content-Type: application/json" --data "{\"username\":\"username\",\"password\":\"password\",\"stayLoggedIn\":\"true\"}"
+curl -v -X POST localhost:8080/login -H "Accept: application/json" --header "Content-Type: application/json" --data "{\"username\":\"username\",\"password\":\"password\",\"stayLoggedIn\":\"true\"}"
 responds with a User.class.
 
 4. ShoppingPageMainContent.js /users/{id}/cart && cart.js -actions (add)CHECK (EDIT QUANTITY FEATURE IN BACKEND AND FRONT END)

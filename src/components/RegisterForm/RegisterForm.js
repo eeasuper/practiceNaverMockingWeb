@@ -136,11 +136,19 @@ class RegisterForm extends Component{
     let valid = false;
     if(this.state.timeoutID === 0){
       let timeout = setTimeout(()=>{
+        const params = new URLSearchParams();
+        params.append('username', target.value);
+        const options = {
+          params,
+          method: "post",
+          url: "/users/validate"
+        }
         //do api call here.
         //for backend: https://stackoverflow.com/questions/30895286/spring-mvc-how-to-return-simple-string-as-json-in-rest-controller
-        apiCall("get","/users/"+target.value, {}).then((data)=>{
+        console.log("trying to send: "+target.value);
+        apiCall(options).then((data)=>{
           //not sure what data will give.
-          console.log("RegisterForm.js validateUesrname:")
+          console.log("RegisterForm.js validateUsername:")
           console.log(data);
           if(data=== [true]){
             valid = true;
