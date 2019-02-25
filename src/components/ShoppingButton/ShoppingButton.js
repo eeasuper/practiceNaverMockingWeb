@@ -33,6 +33,7 @@ class ShoppingButton extends Component{
     this.flipping.read();
 
     if(this.props.currentUser.user.id && (this.props.cart.length === 0)){
+      console.log(this.props.currentUser.user.id);
       console.log("empty cart.");
       this.fetchCart();
     }

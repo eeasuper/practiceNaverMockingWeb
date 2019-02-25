@@ -20,7 +20,7 @@ const store = configureStore();
     //   id: 1
     // }
     // store.dispatch(setCurrentUser(user));
-    // // test
+    // test
     // store.dispatch(loadCart([{
     //     product:{
     //       price: "20,000",

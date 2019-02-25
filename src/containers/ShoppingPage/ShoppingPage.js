@@ -30,7 +30,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return{
     doRemove: (user_id,product_id)=> dispatch(removeFromCart(user_id,product_id)),
-    doFetch: ()=> dispatch(fetchCart()),
+    doFetch: (user_id)=> dispatch(fetchCart(user_id)),
     doAdd: (order,getState)=> dispatch(addToCart(order,getState))
   };
 }
