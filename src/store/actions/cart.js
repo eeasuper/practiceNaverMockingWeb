@@ -32,7 +32,7 @@ export const removeFromCart = (user_id, product_id) => {
   export const fetchCart = (user_id) => {
   console.log("FROM cart.js fetchCart()")
   return dispatch => {
-    return Promise((resolve, reject)=>{
+    return new Promise((resolve, reject)=>{
       return apiCall("get", `/users/${user_id}/cart`)
       .then(res => {
         /*
