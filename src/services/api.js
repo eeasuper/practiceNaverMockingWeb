@@ -14,8 +14,6 @@ const backendDomain = "https://naver-mock-app-backend.herokuapp.com";
      // return axios[method.toLowerCase()](backendDomain+path, data).then(res=> {
 export function apiCall(method, path, data){
   let url = backendDomain + path;
-  console.log("method:")
-  console.log(method);
   let  config;
   if(method === "post"){
     config = {
@@ -37,8 +35,9 @@ export function apiCall(method, path, data){
     }
   }
    return new Promise((resolve, reject)=>{
-    console.log("attempting to send data:");
+    console.log("attempting to send data & config:");
     console.log(data)
+    console.log(config);  
      return axios(config).then(res=> {
       console.log("successful apiCall");
       console.log(res);

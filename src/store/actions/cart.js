@@ -56,7 +56,7 @@ export const removeFromCart = (user_id, product_id) => {
           // }
           console.log(val);
           let p = productArray.find((v,i)=>{
-            return v.id === val.product.id;
+            return v.id === val.productId;
           })
 
           preloadedCart.add(p);
@@ -65,7 +65,6 @@ export const removeFromCart = (user_id, product_id) => {
         resolve(preloadedCart);
       })
       .catch(err => {
-        console.log(err.message);
         console.log("err caught in actions/cart.js")
       })
     })
