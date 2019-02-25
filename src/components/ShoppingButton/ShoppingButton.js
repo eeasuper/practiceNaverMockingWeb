@@ -10,7 +10,7 @@ import {
 import './ShoppingButton.css'
 import TestPic from './product_1.png';
 import {loadCart} from '../../store/actions/cart';
-
+import {productArray} from '../../resources/products/Products';
 
 class ShoppingButton extends Component{
   constructor(props){
@@ -32,7 +32,7 @@ class ShoppingButton extends Component{
     })
     this.flipping.read();
 
-    if(this.props.currentUser.user.id){
+    if(this.props.currentUser.user.id && !(!!Object.values(this.props.cart).length)){
       this.fetchCart();
     }
   }
@@ -41,31 +41,10 @@ class ShoppingButton extends Component{
     //do Fetch then dispatch Load Cart with the products received from backend as action payload.
     this.props.onFetch(this.props.currentUser.user.id)
     .then((data)=>{
-      /*
-        response format (could fix this later if possible in backend to make it "cleaner":
-        {
-          "_embedded":{
-            "orderDetailsList":[{
-               "id": 8 
-                ... 
-            },{...}]
-          }
-        }
-      */
-      let preloadedCart = [];
-      data._embedded.orderDetailsList.forEach((val, ind)=>{
-        //$$_hibernate_interceptor & hibernateLazyInitializer is deleted because it is unnecessary info sent from backend.(should fix this later).
-        let product = val.product.slice(0);
-        if(product.$$_hibernate_interceptor){
-          delete product.$$_hibernate_interceptor;
-          delete product.hibernateLazyInitializer;
-        }
-
-        preloadedCart.add(product);
-      });
-      this.props.loadCart(preloadedCart);
+      console.log(data);
+      // this.props.loadCart(preloadedCart);
     }).catch((err)=>{
-      console.log("error in ShoppingButton.js");
+      console.log("error in ShoppingButton.js fetchCart");
       console.log(err);
     })
   }
@@ -85,8 +64,10 @@ class ShoppingButton extends Component{
     }
   }
 
+
   handleClick(e){
-    if(this.props.currentUser.user.id){
+    if(this.props.currentUser.user.id && !(!!Object.values(this.props.cart).length)){
+      console.log("empty cart.");
       this.fetchCart();
     }
   }

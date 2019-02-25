@@ -1,6 +1,6 @@
 import {LOAD_CART, ADD_TO_CART, REMOVE_FROM_CART} from '../actionTypes';
 import {apiCall} from '../../services/api';
-
+import {productArray} from '../../resources/products/Products';
 export const loadCart = products => ({
   type: LOAD_CART,
   products
@@ -32,22 +32,51 @@ export const removeFromCart = (user_id, product_id) => {
   export const fetchCart = (user_id) => {
   console.log("FROM cart.js fetchCart()")
   return dispatch => {
-    return apiCall("get", `/users/${user_id}/cart`)
-    .then(res => {
-      dispatch(loadCart(res));
-    })
-    .catch(err => {
-      console.log(err.message);
-      console.log("err caught in actions/cart.js")
+    return Promise((resolve, reject)=>{
+      return apiCall("get", `/users/${user_id}/cart`)
+      .then(res => {
+        /*
+          response format (could fix this later if possible in backend to make it "cleaner":
+          {
+            "_embedded":{
+              "orderDetailsList":[{
+                 "id": 8 
+                  ... 
+              },{...}]
+            }
+          }
+        */
+        let preloadedCart = [];
+        res._embedded.orderDetailsList.forEach((val, ind)=>{
+          //$$_hibernate_interceptor & hibernateLazyInitializer is deleted because it is unnecessary info sent from backend.(should fix this later).
+          // let product = val.product.slice(0);
+          // if(product.$$_hibernate_interceptor){
+          //   delete product.$$_hibernate_interceptor;
+          //   delete product.hibernateLazyInitializer;
+          // }
+          console.log(val);
+          let p = productArray.find((v,i)=>{
+            return v.id === val.product.id;
+          })
+
+          preloadedCart.add(p);
+        });
+        dispatch(loadCart(preloadedCart));
+        resolve(preloadedCart);
+      })
+      .catch(err => {
+        console.log(err.message);
+        console.log("err caught in actions/cart.js")
+      })
     })
   };
 }
 
 export const addToCart = order => (dispatch, getState) => {
   let {currentUser} = getState();
-  const id = currentUser.user.id;
-  console.log("in cart.js: id of currentuser: "+ id);
-  return apiCall("post", `/users/${id}/cart`, order)
+  const userId = currentUser.user.id;
+  console.log("in cart.js: id of currentuser: "+ userId);
+  return apiCall("post", `/users/${userId}/cart`, order)
   .then(res=>{
     dispatch(addCart(res));
   })

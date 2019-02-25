@@ -16,18 +16,19 @@ class ShoppingPageMainContent extends Component{
   }
 
   handleClick(e){
-    let product = Object.create(productArray.filter((val, ind)=>{
+    // let product = Object.create(productArray.filter((val, ind)=>{
+    //   return val.id === parseInt(e.target.id);
+    // })[0]);
+    let product = productArray.filter((val, ind)=>{
       return val.id === parseInt(e.target.id);
-    })[0]);
+    })[0];
     const user = this.props.currentUser.user;
     let data = {
-      product,
-      user,
+      productId: product.id,
+      userId: user.id,
       quantity: 1
     }
 
-    data.product.price = Number(data.product.price.replace(/[^0-9.-]+/g,""));
-    data.product.productName = String(data.product.productName);
     console.log(data);
     this.props.onAdd(data);
     this.props.onShopButAni();
