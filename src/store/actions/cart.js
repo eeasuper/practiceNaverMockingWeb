@@ -27,7 +27,7 @@ export const removeFromCart = (user_id, product_id) => {
       });
   }
 }
-//erase param: products when connecting to backend...
+
 // export const fetchCart = (user_id, products) => {
   export const fetchCart = (user_id) => {
   console.log("FROM cart.js fetchCart()")
@@ -53,6 +53,7 @@ export const addToCart = order => (dispatch, getState) => {
   })
   .catch(err =>  {
     console.log(err.message);
+    console.log(err);
     console.log("err caught in actions/cart.js")
   });
 }

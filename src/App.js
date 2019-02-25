@@ -20,7 +20,8 @@ if(localStorage.jwtToken){
   try{
     let jwt = jwtDecode(localStorage.jwtToken);
     let user = {
-      username: jwt.sub
+      username: jwt.sub,
+      id: jwt.usr_id
     }
     store.dispatch(setCurrentUser(user));
   } catch(e){ 

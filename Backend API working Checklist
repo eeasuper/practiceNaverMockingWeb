@@ -12,6 +12,10 @@ curl -v -X POST localhost:8080/login -H "Accept: application/json" --header "Con
 responds with a User.class.
 
 4. ShoppingPageMainContent.js /users/{id}/cart && cart.js -actions (add)CHECK (EDIT QUANTITY FEATURE IN BACKEND AND FRONT END)
+curl -v -X POST localhost:8080/users/1/cart --header "Accept: application/json" --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTU1MTkzNDE0MH0.UUSh9EpOCrw-kUTA3GgisgahnHMvjUW9gYjEOaWgS8gCKBJaYA0okHjmJRUaFXZ053XjPwZ5O8dFFYE8qGWS3Q" --header "Content-Type: application/json" --data "{\"product\":\"{\"productName\":\"[대구백화점 1관] [시에로코스메틱]유니 어 데이\",\"price\":20000}\",\"user\":\"{\"username\":\"username\"}\",\"quantity\":1}"
+
+curl -v -X POST localhost:8080/users/1/cart --header "Accept: application/json" --header "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTU1MTkzNDE0MH0.UUSh9EpOCrw-kUTA3GgisgahnHMvjUW9gYjEOaWgS8gCKBJaYA0okHjmJRUaFXZ053XjPwZ5O8dFFYE8qGWS3Q" --header "Content-Type: application/json" --data "{\"product\":{""productName"":""[대구백화점 1관] [시에로코스메틱]유니 어 데이"",""price:20000"",""id"":2},\"user\":{""username"":""username""},\"quantity\":1}"
+
 
 5. ShoppingButton.js && cart.js -actions (fetch) /users/${user_id}/cart CHECK
 curl -v -X GET localhost:8080/users/1/cart - H "Accept: application/json"
