@@ -56,6 +56,7 @@ export const removeFromCart = (user_id, product_id) => {
           // }
           console.log(val);
           let p = productArray.find((v,i)=>{
+            console.log(v);
             return v.id === val.productId;
           })
 
