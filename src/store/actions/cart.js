@@ -61,6 +61,7 @@ export const removeFromCart = (user_id, product_id) => {
 
           preloadedCart.add(p);
         });
+        console.log(preloadedCart);
         dispatch(loadCart(preloadedCart));
         resolve(preloadedCart);
       })
