@@ -18,7 +18,11 @@ if(localStorage.jwtToken){
   setAuthorizationToken(localStorage.jwtToken);
   //prevent someone from manually tampering with the key of jwtToken in localStorage
   try{
-    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+    let jwt = jwtDecode(localStorage.jwtToken);
+    let user = {
+      username: jwt.sub
+    }
+    store.dispatch(setCurrentUser(user));
   } catch(e){ 
     store.dispatch(setCurrentUser({}))
   }

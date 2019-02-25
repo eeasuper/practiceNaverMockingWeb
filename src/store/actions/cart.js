@@ -47,7 +47,7 @@ export const addToCart = order => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
   console.log("in cart.js: id of currentuser: "+ id);
-  return apiCall("post", `/users/${id}/cart`, {order})
+  return apiCall("post", `/users/${id}/cart`, order)
   .then(res=>{
     dispatch(addCart(res));
   })

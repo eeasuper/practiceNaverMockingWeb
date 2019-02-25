@@ -25,6 +25,8 @@ class ShoppingPageMainContent extends Component{
       user,
       quantity: 1
     }
+
+    data.product.price = Number(data.product.price.replace(/[^0-9.-]+/g,""));
     console.log(data);
     this.props.onAdd(data);
     this.props.onShopButAni();

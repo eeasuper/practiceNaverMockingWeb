@@ -158,7 +158,6 @@ class RegisterForm extends Component{
           url: "/users/validate"
         }
         apiCallWithParams(options).then((data)=>{
-          console.log("RegisterForm.js validateUsername:")
           if(data[0]){
             valid = false;
           }else if(!data[0]){
@@ -191,15 +190,13 @@ class RegisterForm extends Component{
 
     let isEmpty = !!(target.value === "");
     if(valid && !isEmpty){
-      //this part may be dead code.
+      //this line below may be dead code.
       this.setStateForValidity(target, "", true)
     }else if(!valid && !isEmpty){
       this.setStateForValidity(target,"",false);
     }else{
       this.setStateForValidity(target,"",false);
     }
-    //For test:
-    // this.setStateForValidity(target, "", true)
   }
 
   validateEmail(target){

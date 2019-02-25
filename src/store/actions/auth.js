@@ -19,22 +19,19 @@ export function logout(){
     dispatch(setCurrentUser({}));
   }
 }
-//do I have to add content-type? and Accept?
-
 
 export function authUser(type, userData, method){  
   return (dispatch) => {
     return new Promise((resolve, reject)=>{
       return apiCall(method, "/"+`${type}`, userData)
       .then((data) => {
-      // .then(({token,...user}) => {
         let response = {
-          name: [data.name],
-          username: [data.username],
-          password: [data.password],
-          email: [data.email],
-          token: [data.token],
-          id: [data.id]
+          name: data.name,
+          username: data.username,
+          password: data.password,
+          email: data.email,
+          token: data.token,
+          id: data.id
         };
         localStorage.setItem("jwtToken", data.token);
         setAuthorizationToken(data.token);
