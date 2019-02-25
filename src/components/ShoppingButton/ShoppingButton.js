@@ -83,7 +83,7 @@ class ShoppingButton extends Component{
     }));
   }
   handleOkayClick(e){
-    //if user is not logged in, this method will not work(maybe).
+    //to make things look faster for the user, either do an early dispatch for remove() or turn visibility off of the product clicked.
     this.props.onRemove(this.props.currentUser.user.id, this.state.itemToErase);
     this.setState(prevState=>({
       ...prevState, itemToErase: null
@@ -99,7 +99,7 @@ class ShoppingButton extends Component{
       return(
         <div className="cart_product" key={ind}>
           <div className="cart_p_thumb">
-            <img src={TestPic} alt={img_alt}/>
+            <img src={val.picture || TestPic} alt={img_alt}/>
           </div>
           <div className="cart_p_details">
             <p className="cart_p_name">{val.productName}</p>
