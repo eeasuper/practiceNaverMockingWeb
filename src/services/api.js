@@ -16,14 +16,24 @@ export function apiCall(method, path, data){
   let url = backendDomain + path;
   console.log("method:")
   console.log(method);
-  let reMethod = method.toString();
-  const config = {
-    method: reMethod,
-    url: url,
-    data : data,
-    headers:{
-      "Content-Type":"application/json",
-      "Accept":"application/json"
+  let  config;
+  if(method === "post"){
+    config = {
+      method: method,
+      url: url,
+      data : data,
+      headers:{
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      }
+    }
+  }else{
+    config = {
+      method: method,
+      url: url,
+      headers:{
+        "Accept":"application/json"
+      }
     }
   }
    return new Promise((resolve, reject)=>{
@@ -32,7 +42,7 @@ export function apiCall(method, path, data){
      return axios(config).then(res=> {
       console.log("successful apiCall");
       console.log(res);
-      return resolve(res.data) //in a successful request we always get back a subobject call data.
+      return resolve(res.data)
     }).catch(err => {
       //{}comes in an object called response and a sub object called data if something goes wrong. 
       console.log("caught in apiCall")

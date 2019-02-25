@@ -10,9 +10,34 @@ import history from './services/history';
 
 import Main from './containers/Main'
 import {configureStore} from "./store";
-
-
+import {loadCart} from './store/actions/cart';
+import Product1 from './resources/products/product_1.png'
+import Product2 from './resources/products/product_2.png'
 const store = configureStore();
+//Testing:
+    // let user = {
+    //   username: "username",
+    //   id: 1
+    // }
+    // store.dispatch(setCurrentUser(user));
+    // // test
+    // store.dispatch(loadCart([{
+    //     product:{
+    //       price: "20,000",
+    //     productName: "[대구백화점 1관] [시에로코스메틱]유니 어 데이",
+    //     picture: Product1,
+    //     id: 2  
+    //     }
+    //   },
+    //   {
+    //     product:{
+    //       price: "22,000",
+    //     productName: "[PUPA] 멀티플레이 트리플 퍼포즈 아이펜슬 5종",
+    //     picture: Product2,
+    //     id: 3
+    //   }
+    //     }
+    //     ]));
 
 if(localStorage.jwtToken){
   setAuthorizationToken(localStorage.jwtToken);
@@ -24,6 +49,7 @@ if(localStorage.jwtToken){
       id: jwt.usr_id
     }
     store.dispatch(setCurrentUser(user));
+
   } catch(e){ 
     store.dispatch(setCurrentUser({}))
   }

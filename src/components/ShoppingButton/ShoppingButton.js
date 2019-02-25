@@ -32,7 +32,8 @@ class ShoppingButton extends Component{
     })
     this.flipping.read();
 
-    if(this.props.currentUser.user.id && !(!!Object.values(this.props.cart).length)){
+    if(this.props.currentUser.user.id && (this.props.cart.length === 0)){
+      console.log("empty cart.");
       this.fetchCart();
     }
   }
@@ -66,7 +67,8 @@ class ShoppingButton extends Component{
 
 
   handleClick(e){
-    if(this.props.currentUser.user.id && !(!!Object.values(this.props.cart).length)){
+    //!(!!Object.values(this.props.cart).length)
+    if(this.props.currentUser.user.id && (this.props.cart.length === 0)){
       console.log("empty cart.");
       this.fetchCart();
     }
@@ -99,7 +101,7 @@ class ShoppingButton extends Component{
             <img src={TestPic} alt={img_alt}/>
           </div>
           <div className="cart_p_details">
-            <p className="cart_p_name">{val.product.details}</p>
+            <p className="cart_p_name">{val.product.productName}</p>
             <div className="cart_p_price">
               <span className="cart_p_price_s">{val.product.price}</span>
               <span>원</span>

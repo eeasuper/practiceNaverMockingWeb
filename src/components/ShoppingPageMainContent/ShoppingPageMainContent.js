@@ -93,7 +93,7 @@ class ShoppingPageMainContent extends Component{
                   <span>원</span>
                 </div>
               </div>
-              <p className="product_description">{val.details}</p>
+              <p className="product_description">{val.productName}</p>
             </div>
             <div className="product_anchor" id={val.id} onClick={this.handleClick}></div>
           </div>

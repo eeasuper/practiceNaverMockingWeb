@@ -34,7 +34,7 @@ export const removeFromCart = (user_id, product_id) => {
   return dispatch => {
     return new Promise((resolve, reject)=>{
       return apiCall("get", `/users/${user_id}/cart`)
-      .then(res => {
+      .then(data => {
         /*
           response format (could fix this later if possible in backend to make it "cleaner":
           {
@@ -47,7 +47,7 @@ export const removeFromCart = (user_id, product_id) => {
           }
         */
         let preloadedCart = [];
-        res._embedded.orderDetailsList.forEach((val, ind)=>{
+        data._embedded.orderDetailsList.forEach((val, ind)=>{
           //$$_hibernate_interceptor & hibernateLazyInitializer is deleted because it is unnecessary info sent from backend.(should fix this later).
           // let product = val.product.slice(0);
           // if(product.$$_hibernate_interceptor){
