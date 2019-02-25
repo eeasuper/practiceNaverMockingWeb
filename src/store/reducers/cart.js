@@ -11,7 +11,7 @@ export default (state=[], action) => {
       //changing Object into array for filtering:
       return Object.keys(state).map(val => state[val]).filter(val =>parseInt(val.product.id) !== parseInt(action.id));
     case ADD_TO_CART:
-      let key = action.product.product.id;
+      let key = action.product.id;
       return  {...state, [key]:action.product}
     default:
       return state;

@@ -76,8 +76,16 @@ export const addToCart = order => (dispatch, getState) => {
   const userId = currentUser.user.id;
   console.log("in cart.js: id of currentuser: "+ userId);
   return apiCall("post", `/users/${userId}/cart`, order)
-  .then(res=>{
-    dispatch(addCart(res));
+  .then(data=>{
+    /*
+    res: order:{
+      id:...,userId...,productId...,quantity...
+    }
+    */
+    let product = productArray.find((val,ind)=>{
+      return val.id === data.order.productId;
+    })
+    dispatch(addCart(product));
   })
   .catch(err =>  {
     console.log(err.message);
