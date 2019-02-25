@@ -102,16 +102,16 @@ class ShoppingButton extends Component{
             <img src={TestPic} alt={img_alt}/>
           </div>
           <div className="cart_p_details">
-            <p className="cart_p_name">{val.product.productName}</p>
+            <p className="cart_p_name">{val.productName}</p>
             <div className="cart_p_price">
-              <span className="cart_p_price_s">{val.product.price}</span>
+              <span className="cart_p_price_s">{val.price}</span>
               <span>원</span>
             </div>
             <div className="cart_p_quantity">
               <span>수: 1</span>
             </div>
           </div>
-          <button className="cart_p_remove" id={val.product.id} onClick={this.handleCloseClick}>
+          <button className="cart_p_remove" id={val.id} onClick={this.handleCloseClick}>
             <svg height="9" width="9" id="close" viewBox="0 0 32 32"  xmlns="http://www.w3.org/2000/svg" fill="white"><path d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/></svg>
           </button>
           

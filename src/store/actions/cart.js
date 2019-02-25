@@ -54,12 +54,10 @@ export const removeFromCart = (user_id, product_id) => {
           //   delete product.$$_hibernate_interceptor;
           //   delete product.hibernateLazyInitializer;
           // }
-          console.log(val);
+
           let p = productArray.find((v,i)=>{
-            console.log(v);
             return v.id === val.productId;
           })
-          console.log(p);
           preloadedCart.push(p);
         });
         console.log(preloadedCart);
