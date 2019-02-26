@@ -41,7 +41,7 @@ class RightColumn extends Component{
                 </div>
               </div>
               </Fragment>}
-            {isUserLoggedIn && <LoginBox/>}
+            {isUserLoggedIn && <LoginBox onLoad = {this.props.onLoad}/>}
           </div>
         </div>
     )

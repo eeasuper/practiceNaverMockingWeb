@@ -56,10 +56,6 @@ class ShoppingPageBanner extends Component{
     if(this.state.timeoutID === 0){
       
       let timeout = setTimeout(function(){
-        // setWindowSize({
-        //   x: window.innerWidth,
-        //   y: window.innerHeight
-        // })
       this.setState(prevState=>({
         ...prevState,
         windowSize:{
@@ -68,15 +64,12 @@ class ShoppingPageBanner extends Component{
         },
         timeoutID: 0
       }));  
-        // setTimeoutID(0);
-        console.log(this.state.windowSize);
       }.bind(this),300)
       // setTimeoutID(timeout);
       this.setState(prevState=>({
         ...prevState,
         timeoutID: timeout
       }));
-      console.log(this.state.timeoutID);
     }else if(this.state.timeoutID){
       return null;
     }

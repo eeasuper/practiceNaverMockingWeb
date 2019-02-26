@@ -21,6 +21,7 @@ class LoginBox extends Component{
 
   doLogout(e){
     this.props.doLogout();
+    // this.props.onLoad([]);
   }
 
   componentDidUpdate(){  

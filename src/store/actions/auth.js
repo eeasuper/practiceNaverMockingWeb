@@ -1,5 +1,7 @@
 import {apiCall, setTokenHeader} from "../../services/api";
 import {SET_CURRENT_USER} from "../actionTypes";
+import {loadCart, fetchCart} from './cart';
+
 
 export function setCurrentUser(user){
   return {
@@ -17,6 +19,7 @@ export function logout(){
     localStorage.clear();
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
+    dispatch(loadCart([]));
   }
 }
 
@@ -36,6 +39,7 @@ export function authUser(type, userData, method){
         localStorage.setItem("jwtToken", data.token);
         setAuthorizationToken(data.token);
         dispatch(setCurrentUser(response));
+        dispatch(fetchCart(data.id));
         resolve();
       })
       .catch(err=>{

@@ -9,6 +9,7 @@ import {authUser} from "../store/actions/auth";
 import LoginForm from '../components/LoginForm/LoginForm';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 import ShoppingPage from './ShoppingPage/ShoppingPage'
+// import {fetchCart, loadCart} from '../store/actions/cart';
 
 class Main extends Component {
   componentDidUpdate(){
@@ -48,20 +49,16 @@ class Main extends Component {
 
 function mapStateToProps(state){
   return{
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    // cart: state.cart
   }
 }
 function mapDispatchToProps(dispatch){
   return{
-    doAuth:  (type,state, method)=> dispatch(authUser(type,state, method))
+    doAuth:  (type,state, method)=> dispatch(authUser(type,state, method)),
+    // doLoad: (products)=> dispatch(loadCart(products)),
+    // doFetch: (userId) => dispatch(fetchCart(userId))
   };
 }
 
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Main));
-
-        // <Route exact path="/signin" render={props=>{
-        //     return (<Homepage/>);
-        // }}/>
-        // <Route exact path="/signup" render={props =>{
-        //   return(<Homepage/>);
-        // }}/>

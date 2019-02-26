@@ -45,6 +45,10 @@ class ShoppingButton extends Component{
     }
   }
 
+  // shouldComponentUpdate(nextProps, nextState){
+  //   return this.props.currentUser.user.id != this.state.currentUserId;
+  // }
+
   fetchCart(){
     //do Fetch then dispatch Load Cart with the products received from backend as action payload.
     this.props.onFetch(this.props.currentUser.user.id)
@@ -68,10 +72,11 @@ class ShoppingButton extends Component{
     let userId = this.props.currentUser.user.id;
     console.log(userId);
     console.log(this.state.currentUserId);
+    //code below may be dead code.
     if(userId !== this.state.currentUserId){
       console.log("resetting state")
 
-      this.fetchCart();
+      // this.fetchCart();
       this.setState(prevState=>({
         ...prevState,
         currentUserId: userId
