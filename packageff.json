@@ -19,6 +19,7 @@
     "react-transition-group": "^2.5.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "serve": "^10.1.2",
     "url-search-params-polyfill": "^5.0.0"
   },
   "scripts": {
