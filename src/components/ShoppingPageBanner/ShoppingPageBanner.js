@@ -1,6 +1,7 @@
 import React, { Component,Fragment } from 'react';
 import Flipping from 'flipping'
 import './ShoppingPageBanner.css'
+import ReactResizeDetector from 'react-resize-detector';
 
 class ShoppingPageBanner extends Component{
   constructor(props){
@@ -22,6 +23,7 @@ class ShoppingPageBanner extends Component{
     this.getMarginLeft = this.getMarginLeft.bind(this);
     this.handleArrowClick = this.handleArrowClick.bind(this);
     this.handleBoxClick = this.handleBoxClick.bind(this);
+    this.onResize = this.onResize.bind(this);
   }
   // const [selectedBox, setSelectedBox] = useState(0);
   // const [hovering, setHovering] = useState(false);
@@ -32,7 +34,7 @@ class ShoppingPageBanner extends Component{
   // })
 
   componentDidMount(){
-    window.addEventListener("resize", this.updateDimensions);
+    // window.addEventListener("resize", this.updateDimensions);
     this.flipping = new Flipping({
     })
 
@@ -187,6 +189,10 @@ class ShoppingPageBanner extends Component{
     }))
   }
 
+  onResize(){
+    this.updateDimensions();
+  }
+
   render(){
     const box = [{
       position: '-642px -346px',
@@ -286,7 +292,7 @@ class ShoppingPageBanner extends Component{
             </div>
           </button>
         </Fragment>
-    
+        <ReactResizeDetector handleWidth handleHeight onResize={this.onResize} />
       </div>
     )  
   }

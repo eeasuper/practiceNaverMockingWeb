@@ -1,0 +1,8 @@
+.footer_container{
+  position: relative;
+  margin-top: 8px;
+  border-top: 1px solid #e3e7ee;
+  background: #fff;
+  text-align: left;
+  height: 100px;
+}

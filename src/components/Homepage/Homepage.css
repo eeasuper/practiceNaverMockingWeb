@@ -1,0 +1,7 @@
+#homepage_container{
+  margin: 0 auto;
+  padding: 8px 10px 0;
+  width: 1080px;
+  text-align: left;
+  overflow: hidden;
+}

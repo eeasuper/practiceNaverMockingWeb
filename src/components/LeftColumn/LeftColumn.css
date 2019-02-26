@@ -1,0 +1,41 @@
+.left_container{
+  float: left;
+  width: 740px;
+}
+
+.info_box{
+  height: 44px;
+  border: 1px solid #dee3eb;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.info_innerbox{
+  position: relative;
+  padding: 15px 0 0 16px
+}
+
+.info_innerbox h3{
+  line-height: 16px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.info_box2{
+  position: relative;
+  height: 244px;
+  border: 1px solid #dee3eb;
+  background: #fff;
+
+}
+
+.info_innerbox2{
+  padding: 13px 0 0 16px;
+}
+
+.info_innerbox2 p{
+  font-size: 16px;
+}

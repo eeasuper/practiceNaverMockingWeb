@@ -21,7 +21,6 @@ class RightColumn extends Component{
   render(){
     let isUserLoggedIn = this.props.currentUser.isAuthenticated
     return(
-      <div  id="homepage_container">
         <div id="column_right">
           <div id="account">
             {!isUserLoggedIn &&
@@ -45,7 +44,6 @@ class RightColumn extends Component{
             {isUserLoggedIn && <LoginBox/>}
           </div>
         </div>
-      </div>
     )
   }
 }

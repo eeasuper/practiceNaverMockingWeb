@@ -18,10 +18,19 @@ export const addCart = product => ({
 
 
 export const removeFromCart = (user_id, product_id) => {
-  return dispatch => {
+  return (dispatch,getState) => {
+    let dispatched = dispatch(remove(product_id));
     return apiCall("delete", `/users/${user_id}/cart/${product_id}`)
-      .then(()=> dispatch(remove(product_id)))
+      .then(()=> {})
       .catch(err => {
+        let {cart} = getState();
+        console.log(cart);
+        console.log(dispatched);
+        if(Object.keys(cart).every((e)=>(dispatched.product.id!==e))){
+          dispatch(addCart(productArray.find((v)=>{
+            return v.id === parseInt(dispatched.id);
+          })));  
+        }
         console.log(err.message);
         console.log("err caught in actions/cart.js err")
       });
@@ -75,20 +84,32 @@ export const addToCart = order => (dispatch, getState) => {
   let {currentUser} = getState();
   const userId = currentUser.user.id;
   console.log("in cart.js: id of currentuser: "+ userId);
+    /*
+  res: order:{
+    id:...,userId...,productId...,quantity...
+  }
+  */
+  let product = productArray.find((val,ind)=>{
+    return val.id === order.productId;
+  })
+  let dispatched = dispatch(addCart(product));
   return apiCall("post", `/users/${userId}/cart`, order)
   .then(data=>{
-    /*
-    res: order:{
-      id:...,userId...,productId...,quantity...
-    }
-    */
-    let product = productArray.find((val,ind)=>{
-      return val.id === data.order.productId;
-    })
-    dispatch(addCart(product));
+    // /*
+    // res: order:{
+    //   id:...,userId...,productId...,quantity...
+    // }
+    // */
+    // let product = productArray.find((val,ind)=>{
+    //   return val.id === data.order.productId;
+    // })
+    // dispatch(addCart(product));
   })
   .catch(err =>  {
-    console.log(err.message);
+      let {cart} = getState();
+      if(Object.keys(cart).some((e)=>(dispatched.product.id===e))){
+        dispatch(remove(product.id))        
+      }
     console.log(err);
     console.log("err caught in actions/cart.js")
   });
