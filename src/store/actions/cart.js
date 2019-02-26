@@ -26,7 +26,7 @@ export const removeFromCart = (user_id, product_id) => {
         let {cart} = getState();
         console.log(cart);
         console.log(dispatched);
-        if(Object.keys(cart).every((e)=>(dispatched.product.id!==e))){
+        if(Object.keys(cart).every((e)=>(dispatched.id!==e))){
           dispatch(addCart(productArray.find((v)=>{
             return v.id === parseInt(dispatched.id);
           })));  
@@ -74,6 +74,7 @@ export const removeFromCart = (user_id, product_id) => {
         resolve(preloadedCart);
       })
       .catch(err => {
+        console.log(err);
         console.log("err caught in actions/cart.js")
       })
     })
@@ -108,7 +109,7 @@ export const addToCart = order => (dispatch, getState) => {
   .catch(err =>  {
       let {cart} = getState();
       if(Object.keys(cart).some((e)=>(dispatched.product.id===e))){
-        dispatch(remove(product.id))        
+        dispatch(remove(product.id))
       }
     console.log(err);
     console.log("err caught in actions/cart.js")

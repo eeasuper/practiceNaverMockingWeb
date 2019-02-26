@@ -68,10 +68,8 @@ class ShoppingButton extends Component{
 
   componentDidUpdate(){
     this.flipping.flip();
-    console.log("going through componentDidUpdate")
+    // console.log("going through componentDidUpdate")
     let userId = this.props.currentUser.user.id;
-    console.log(userId);
-    console.log(this.state.currentUserId);
     //code below may be dead code.
     if(userId !== this.state.currentUserId){
       console.log("resetting state")
