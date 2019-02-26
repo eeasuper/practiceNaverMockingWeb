@@ -64,8 +64,13 @@ class ShoppingButton extends Component{
 
   componentDidUpdate(){
     this.flipping.flip();
-    if(this.props.currentUser.user.id !== this.state.currentUserId){
-      let userId = this.props.currentUser.user.id;
+    console.log("going through componentDidUpdate")
+    let userId = this.props.currentUser.user.id;
+    console.log(userId);
+    console.log(this.state.currentUserId);
+    if(userId !== this.state.currentUserId){
+      console.log("resetting state")
+
       this.fetchCart();
       this.setState(prevState=>({
         ...prevState,
