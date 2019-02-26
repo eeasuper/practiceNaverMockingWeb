@@ -23,7 +23,3 @@ yarn-debug.log*
 yarn-error.log*
 /.metadata/
  //////// Copied from this link on 2019-02-26: https://medium.com/jeremy-gottfrieds-tech-blog/tutorial-how-to-deploy-a-production-react-app-to-heroku-c4831dfcfa08
-src/*
-public/*
-build/static/css/*.map
-build/static/js/*.map
