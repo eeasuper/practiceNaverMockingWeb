@@ -14,7 +14,7 @@ class ShoppingPage extends Component{
     return(
       <div>
         <ShoppingHeader currentUser = {this.props.currentUser}/>
-        <ShoppingPageContent onAdd={this.props.doAdd} currentUser = {this.props.currentUser}/>
+        <ShoppingPageContent onAdd={this.props.doAdd} currentUser = {this.props.currentUser} />
         <ShoppingButton onRemove={this.props.doRemove} onFetch={this.props.doFetch} onAdd={this.props.doAdd} cart={this.props.cart} currentUser = {this.props.currentUser}/>
       </div>
     )

@@ -18,6 +18,7 @@ class ShoppingButton extends Component{
     this.state ={
       showDialog: false,
       itemToErase: null
+      currentUserId: null
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleCloseClick = this.handleCloseClick.bind(this);
@@ -36,6 +37,11 @@ class ShoppingButton extends Component{
       console.log(this.props.currentUser.user.id);
       console.log("empty cart.");
       this.fetchCart();
+      let userId = this.props.currentUser.user.id;
+      this.setState(prevState=>({
+        ...prevState,
+        currentUserId: userId
+      }))
     }
   }
 
@@ -58,7 +64,14 @@ class ShoppingButton extends Component{
 
   componentDidUpdate(){
     this.flipping.flip();
-
+    if(this.props.currentUser.user.id !== this.state.currentUserId){
+      let userId = this.props.currentUser.user.id;
+      this.fetchCart();
+      this.setState(prevState=>({
+        ...prevState,
+        currentUserId: userId
+      }))
+    }
     if(this.props.buttonActi){
       this.buy_button.current.setAttribute("data-buttonActi",true)
     }else{
