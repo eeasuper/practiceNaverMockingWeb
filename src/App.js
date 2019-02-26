@@ -15,11 +15,11 @@ import Product1 from './resources/products/product_1.png'
 import Product2 from './resources/products/product_2.png'
 const store = configureStore();
 //Testing:
-    let user = {
-      username: "username",
-      id: 1
-    }
-    store.dispatch(setCurrentUser(user));
+    // let user = {
+    //   username: "username",
+    //   id: 1
+    // }
+    // store.dispatch(setCurrentUser(user));
 
     // store.dispatch(loadCart([{
     //     product:{
