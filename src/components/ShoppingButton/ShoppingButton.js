@@ -17,7 +17,7 @@ class ShoppingButton extends Component{
     super(props);
     this.state ={
       showDialog: false,
-      itemToErase: null
+      itemToErase: null,
       currentUserId: null
     }
     this.handleClick = this.handleClick.bind(this);
