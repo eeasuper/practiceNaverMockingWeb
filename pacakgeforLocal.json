@@ -22,9 +22,7 @@
     "url-search-params-polyfill": "^5.0.0"
   },
   "scripts": {
-     "heroku-postbuild": "npm run build",
-    "start": "react-scripts start",
-    "dev": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
