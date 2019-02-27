@@ -19,18 +19,20 @@
     "react-transition-group": "^2.5.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "serve": "^10.1.2",
     "url-search-params-polyfill": "^5.0.0"
   },
   "scripts": {
-    "heroku-postbuild": "npm run build",
-    "start": "serve -s build",
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "engines":{
+    "node": "10.14.1"
   },
   "browserslist": [
     ">0.2%",
